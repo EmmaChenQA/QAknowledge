@@ -7,6 +7,7 @@ topic: qa-test-design
 confidence: author-material
 updated: 2026-09-15
 sources: [BBST Test Design Lecture 2 §Quicktests / Common Ideas for Quicktests / Quicktests Have Limits, CC BY-SA 4.0, Kaner/Fiedler, bbst.courses]
+source_lang: en
 related: [qa/test-design/domain-testing-equivalence-boundary, qa/test-design/risk-based-testing-fundamentals, qa/test-design/quicktest-interference-stale-value]
 summary: 速測是針對「常見到值得專門優化」的錯誤類型設計的低成本測試，威力大但不能取代深入的風險分析
 ---

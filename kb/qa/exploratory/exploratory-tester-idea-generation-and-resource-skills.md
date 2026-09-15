@@ -7,6 +7,7 @@ topic: qa-exploratory
 confidence: author-material
 updated: 2026-09-15
 sources: [Bach "Exploratory Testing Explained" v1.3 §Practicing Exploratory Testing pp.5-6 (2002-2003), Kaner "Exploratory Testing" BBST Fall 2006 lecture slides 96-105 (CC BY-SA 2.0)]
+source_lang: en
 related: [qa/exploratory/exploratory-tester-core-skills]
 summary: 優秀探索式測試員靠啟發式清單放大構想多樣性、靠平常累積的資源庫加速施測，技能不足時問題會直接反映成覆蓋錯覺與重複測試。
 ---

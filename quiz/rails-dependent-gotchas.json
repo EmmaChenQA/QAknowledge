@@ -1,0 +1,43 @@
+{
+  "node": "rd/backend/rails/dependent-gotchas",
+  "questions": [
+    {
+      "type": "choice",
+      "q": "Post has_many :comments, -> { where published: true }, dependent: :destroy，刪除一筆 post 後，未發布的 comment 會怎樣？",
+      "options": [
+        "被留下，外鍵仍指向已刪除的 post，形成孤兒記錄",
+        "自動被設為已發布再刪除",
+        "跟已發布的 comment 一起被刪除",
+        "會拋例外阻止 post 被刪除"
+      ],
+      "answer": 0
+    },
+    {
+      "type": "choice",
+      "q": "在 has_many :through 的關聯上設定 dependent: :destroy，刪除擁有者記錄實際會發生什麼？",
+      "options": [
+        "join 記錄與最終目標記錄都會被刪除",
+        "只有最終目標記錄被刪除，join 記錄保留",
+        "Rails 會拋出設定錯誤，因為 :through 不支援 dependent",
+        "選項被忽略，只有中介 join 記錄受影響，最終目標記錄不受影響"
+      ],
+      "answer": 3
+    },
+    {
+      "type": "choice",
+      "q": "「has_and_belongs_to_many 可以直接設定 dependent: :destroy 來管理 join 記錄的刪除」這個說法對嗎？",
+      "options": [
+        "對，habtm 完整支援所有 :dependent 模式",
+        "對，但只支援 :destroy 一種模式",
+        "錯，habtm 不支援直接設定 :dependent，需改用 has_many :through",
+        "錯，habtm 的 join 記錄永遠不會被自動刪除"
+      ],
+      "answer": 2
+    },
+    {
+      "type": "scenario",
+      "q": "QA 復驗一張「刪除文章後應清空所有留言」的票，只用預設狀態（無 scope 過濾條件）的留言測了一輪就判 Pass。事後才發現該 has_many 帶了 scope 且設 dependent: :destroy。這樣測有什麼風險，該怎麼補測？",
+      "answer": "1) 風險：只測預設/符合 scope 的資料，測不出 scope 之外的子記錄是否被遺漏，容易誤判為完全清除；2) 補測：額外建一筆不符合 scope 條件的留言（如未發布狀態），刪除文章後查資料庫確認該筆是否還留著、外鍵是否仍指向已刪除的文章；3) 若確實留下孤兒記錄，需與 RD 確認這是否為設計如此（scope 過濾的預期行為）還是遺漏的清理需求；4) 同時檢查前台/後台是否有查詢路徑會意外撈出這筆孤兒記錄並顯示不完整或錯誤的關聯資料。"
+    }
+  ]
+}

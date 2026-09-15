@@ -7,6 +7,7 @@ topic: qa-exploratory
 confidence: author-material
 updated: 2026-09-15
 sources: [Kaner "Exploratory Testing" BBST Fall 2006 lecture slides 50-57 (CC BY-SA 2.0)]
+source_lang: en
 related: [qa/exploratory/exploratory-testing-four-activities, qa/exploratory/exploratory-tester-core-skills, qa/exploratory/story-evolving-into-test-hypothesis-design]
 summary: 從抽象風險或失敗故事出發沒有固定公式，Kaner 給出找人問、找資料、翻技法清單、寫故事演化四種輔助手段。
 ---

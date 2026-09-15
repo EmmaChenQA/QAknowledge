@@ -1,0 +1,43 @@
+{
+  "node": "rd/backend/rails/restful-seven-actions",
+  "questions": [
+    {
+      "type": "choice",
+      "q": "票面只寫「resources :coupons」，PM 沒特別說明。QA 該預設這個資源有幾個可測端點？",
+      "options": [
+        "七個標準動作（index/new/create/show/edit/update/destroy）都要納入測試清單",
+        "只有票面明文提到的動作要測，其餘不用管",
+        "只有 index 和 show，其餘要另外問",
+        "要看前端頁面有沒有對應按鈕，沒按鈕就不用測"
+      ],
+      "answer": 0
+    },
+    {
+      "type": "choice",
+      "q": "`resource :geocoder`（單數）比 `resources :geocoders`（複數）少了哪個動作？",
+      "options": [
+        "destroy",
+        "index",
+        "create",
+        "update"
+      ],
+      "answer": 1
+    },
+    {
+      "type": "choice",
+      "q": "資源用 `resources :photos, only: [:index, :show]` 限制後，打 `DELETE /photos/1` 預期回應是？",
+      "options": [
+        "403 Forbidden（權限不足）",
+        "路由層 404（根本找不到這條規則，不會進 controller）",
+        "200，但實際不會刪除",
+        "405 Method Not Allowed，且會帶出允許的方法清單"
+      ],
+      "answer": 1
+    },
+    {
+      "type": "scenario",
+      "q": "QA 拿到一張「新增訂單備註功能」的票，只看票面描述的 UI 操作寫了 3 條 TC（新增、顯示、刪除）。該怎麼用 RESTful 七動作的框架檢查覆蓋是否足夠？",
+      "answer": "1) 先查 routes.rb 或 rails routes -c 列出該資源實際開放的動作，不要只看票面描述；2) 對照七動作逐一核對：new/edit 這兩個回傳表單的 GET 端點常被票面忽略但仍是端點，需確認是否也要測；3) 若資源用 only/except 限縮，額外測「打未開放的動作應得路由層 404」；4) 確認資源是複數 resources 還是單數 resource，單數沒有 index，避免誤測不存在的列表頁。"
+    }
+  ]
+}

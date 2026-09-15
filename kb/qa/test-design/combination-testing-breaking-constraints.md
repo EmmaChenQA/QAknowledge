@@ -7,6 +7,7 @@ topic: qa-test-design
 confidence: author-material
 updated: 2026-09-15
 sources: [BBST Test Design Lecture 6 "Multivariable Testing" p.489-513（CC BY-SA 4.0, Kaner/Fiedler, bbst.courses）]
+source_lang: en
 related: [qa/test-design/combination-testing-variable-independence, qa/test-design/combination-testing-coverage-criteria]
 summary: 確認約束關係後，刻意打破它並追蹤下游後果，比只驗證輸入被接受更有說服力
 ---

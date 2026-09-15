@@ -7,6 +7,7 @@ topic: qa-exploratory
 confidence: author-material
 updated: 2026-09-15
 sources: [Test Heuristics Cheat Sheet p4-5（CC BY-SA 4.0，James Lyndsay／Elisabeth Hendrickson 等，Ministry of Testing）]
+source_lang: en
 related: [qa/exploratory/exploratory-heuristics-state-sequence-dependency-mapmaking]
 summary: 從找出變數與觀測點出發，追蹤資料完整性、刻意違反限制條件、並用情境模擬補齊單點測試設計漏掉的組合缺陷
 ---

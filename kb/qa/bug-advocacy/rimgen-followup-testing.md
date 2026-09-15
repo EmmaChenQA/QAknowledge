@@ -7,6 +7,7 @@ topic: qa-bug-advocacy
 confidence: author-material
 updated: 2026-09-15
 sources: [BBST Bug Advocacy Lecture 2 §Researching the Failure Conditions / Follow-Up Testing for Severity, slides 44-71; Lecture 3 §To Report a Bug Well, slides 80-90 (CC BY-SA 4.0, Kaner/Fiedler, bbst.courses)]
+source_lang: en
 related: [qa/bug-advocacy/bug-report-essential-fields, qa/bug-advocacy/defending-corner-case-and-unimportant-bugs]
 summary: 找到失敗現象後先做六類後續調查再報告，讓缺陷以最有說服力的樣貌呈現。
 ---

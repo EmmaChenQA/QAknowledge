@@ -7,6 +7,7 @@ topic: qa-foundations
 confidence: author-material
 updated: 2026-09-15
 sources: [BBST Foundations Lecture 5 §Sequences / The Telenova Stack Failure (CC BY-SA 4.0, Kaner/Bach, bbst.courses)]
+source_lang: en
 related: [qa/foundations/path-sequence-testing-blind-spots, qa/foundations/exhaustive-testing-impossible, qa/foundations/sampling-strategy-design]
 summary: 電話交換機堆疊溢位案例顯示，即使單次操作與分支覆蓋率全數過關，跨多次操作累積的系統狀態仍可能藏著只有長時間運行才會爆發的缺陷。
 ---

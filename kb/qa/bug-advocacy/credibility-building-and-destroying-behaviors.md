@@ -7,6 +7,7 @@ topic: qa-bug-advocacy
 confidence: author-material
 updated: 2026-09-15
 sources: [BBST Bug Advocacy Lecture 6 §Your Choices and Your Credibility / Decisions Are Subject to Bias / Signal Detection & Recognition / Bias-Risky Conduct, slides 160-181 (CC BY-SA 4.0, Kaner/Fiedler, bbst.courses)]
+source_lang: en
 related: [qa/bug-advocacy/bug-report-as-persuasion, qa/bug-advocacy/motivating-programmer-to-fix]
 summary: 缺陷能否被修，很大程度取決於回報者的長期可信度，而可信度由一連串日常選擇累積或摧毀。
 ---

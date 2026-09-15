@@ -7,6 +7,7 @@ topic: qa-test-design
 confidence: author-material
 updated: 2026-09-15
 sources: [BBST Test Design Lecture 1 §Driving Ideas Behind Many Techniques / Classifying the Techniques, CC BY-SA 4.0, Kaner/Fiedler, bbst.courses]
+source_lang: en
 related: [qa/test-design/risk-based-testing-fundamentals, qa/test-design/domain-testing-equivalence-boundary]
 summary: 每個測試技法只回答範圍/覆蓋/執行者/風險/做法/oracle/目標中的一到三項，選技法要看它補了哪一塊、漏了哪一塊。
 ---

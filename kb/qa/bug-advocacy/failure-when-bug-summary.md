@@ -7,6 +7,7 @@ topic: qa-bug-advocacy
 confidence: author-material
 updated: 2026-09-15
 sources: [BBST Bug Advocacy Lecture 3 §Typical Fields: Problem Summary, slides 92-93 (CC BY-SA 4.0, Kaner/Fiedler, bbst.courses)]
+source_lang: en
 related: [qa/bug-advocacy/bug-report-essential-fields]
 summary: 缺陷標題應遵循 FAILURE-WHEN 結構，讓關係人光看標題就能判斷要不要展開細看。
 ---

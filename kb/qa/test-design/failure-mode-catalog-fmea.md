@@ -7,6 +7,7 @@ topic: qa-test-design
 confidence: author-material
 updated: 2026-09-15
 sources: [BBST Test Design Lecture 2 §Failure Mode Lists/Risk Catalogs/Bug Taxonomies / Using Failure Mode Catalogs, CC BY-SA 4.0, Kaner/Fiedler, bbst.courses]
+source_lang: en
 related: [qa/test-design/risk-based-testing-fundamentals, qa/test-design/project-risk-heuristics, qa/test-design/fmea-effects-analysis, rd/backend/fault-injection-chaos-engineering]
 summary: 失效模式目錄把「程式可能怎麼壞」的經驗整理成清單，用來生測試想法、稽核測試計畫、訓練新人風險思維
 ---

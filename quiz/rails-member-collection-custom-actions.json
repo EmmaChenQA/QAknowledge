@@ -1,0 +1,43 @@
+{
+  "node": "rd/backend/rails/member-collection-custom-actions",
+  "questions": [
+    {
+      "type": "choice",
+      "q": "routes.rb 裡 `resources :photos do member do get \"preview\" end end` 產生的 `/photos/1/preview`，屬於什麼類型的路由？",
+      "options": [
+        "member 自訂路由，是七動作之外額外開的端點",
+        "標準七動作之一的 show",
+        "collection 路由，不帶特定資源 id",
+        "非資源路由，跟 photos 資源無關"
+      ],
+      "answer": 0
+    },
+    {
+      "type": "choice",
+      "q": "`collection do get \"search\" end` 與 `member do get \"preview\" end` 最本質的差異是？",
+      "options": [
+        "collection 只能用 POST，member 只能用 GET",
+        "兩者完全等價，只是命名不同",
+        "collection 一定要放在 resources 區塊外面",
+        "collection 作用於整個集合（不帶 id），member 作用於單一資源（帶 id）"
+      ],
+      "answer": 3
+    },
+    {
+      "type": "choice",
+      "q": "QA 看到票面只提到「新增匯出功能」，未特別要求測權限。這個匯出端點如果是用 collection 路由實作，最該優先確認什麼常見缺陷？",
+      "options": [
+        "是否有分頁/速率限制，避免被打出全量資料",
+        "路由名稱是否為英文",
+        "是否有繁體中文翻譯",
+        "按鈕顏色是否符合設計稿"
+      ],
+      "answer": 0
+    },
+    {
+      "type": "scenario",
+      "q": "一張票新增「/photos/:id/preview」member 路由，票面只寫「展示預覽圖」，沒提權限議題。QA 要怎麼設計 TC？",
+      "answer": "1) 先確認這是 member 自訂路由（不在標準七動作內），必須額外納入測試清單；2) 用自己帳號的合法 id 測基本功能是否正常；3) 換成他人擁有的 photo id 測是否仍能取得預覽圖，驗證是否有擁有權檢查（自訂路由常見漏做）；4) 若 controller 新增了這個 action，順手確認 routes.rb 是否真的有開對應路由，避免「功能寫了但路由沒開」導致 404 誤判成其他問題。"
+    }
+  ]
+}

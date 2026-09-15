@@ -1,0 +1,43 @@
+{
+  "node": "rd/backend/rails/uniqueness-validator-not-db-constraint",
+  "questions": [
+    {
+      "type": "choice",
+      "q": "validates :email, uniqueness: true 這行驗證的實作原理是什麼？",
+      "options": [
+        "在資料庫層建立唯一索引",
+        "存檔前對該欄位執行一次 SQL 查詢確認沒有重複",
+        "在應用程式記憶體內做全域鎖",
+        "呼叫資料庫的 UNIQUE constraint API"
+      ],
+      "answer": 1
+    },
+    {
+      "type": "choice",
+      "q": "只靠 uniqueness: true（未搭配資料庫唯一索引）時，高併發下可能出現什麼結果？",
+      "options": [
+        "Rails 會自動排隊處理，不會有重複",
+        "兩個併發請求都查詢『無重複』後幾乎同時寫入，產生重複資料",
+        "第二個請求一定會被資料庫拒絕",
+        "uniqueness 驗證會自動退化成悲觀鎖"
+      ],
+      "answer": 1
+    },
+    {
+      "type": "choice",
+      "q": "要真正防止 uniqueness 驗證下的競態問題，正確做法是？",
+      "options": [
+        "把 uniqueness 驗證改成 on: :create",
+        "把 case_sensitive 設為 false",
+        "改用 validates_associated",
+        "在該欄位（或 scope 對應欄位組合）另外建立資料庫唯一索引"
+      ],
+      "answer": 3
+    },
+    {
+      "type": "scenario",
+      "q": "某票要求『同一使用者同一天只能領一次簽到獎勵』，RD 用 validates :user_id, uniqueness: { scope: :date } 實作。QA 該如何設計 TC 驗證這條規則在真實流量下站得住？",
+      "answer": "先確認 (user_id, date) 欄位組合在資料庫是否真的建了唯一索引，沒有就是高風險候選；設計高併發測試，用同一帳號同一天幾乎同時送出多次簽到請求（多執行緒/多分頁），驗證最終只有一筆成功、其餘被明確拒絕而非都成功；不能只用『依序送出第二次會被擋』的單執行緒測試就判定通過，因為那測不到競態；若發現重複寫入，需向 RD 確認資料庫索引是否缺漏。"
+    }
+  ]
+}

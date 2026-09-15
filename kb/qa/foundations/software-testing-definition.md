@@ -7,6 +7,7 @@ topic: qa-foundations
 confidence: author-material
 updated: 2026-09-15
 sources: [BBST Foundations Lecture 1 §Software Testing / Working Definitions, Lecture 2 §Defining Testing (CC BY-SA 4.0, Kaner/Bach, bbst.courses)]
+source_lang: en
 related: [qa/foundations/testing-as-information-service]
 summary: 測試沒有唯一正確定義；本課程採「為利害關係人提供品質資訊的實證技術調查」作為工作定義。
 ---

@@ -7,6 +7,7 @@ topic: qa-exploratory
 confidence: author-material
 updated: 2026-09-15
 sources: [Test Heuristics Cheat Sheet p2-3（CC BY-SA 4.0，Elisabeth Hendrickson／James Lyndsay／Dale Emery，另含 Ady Stokes 無障礙補充，Ministry of Testing）]
+source_lang: en
 related: [qa/exploratory/web-testing-navigation-input-a11y-heuristics]
 summary: 檢查鍵盤操作、語境資訊與內容呈現是否讓所有使用者（含依賴輔助科技的使用者）都能正常使用，純功能測試最容易忽略。
 ---

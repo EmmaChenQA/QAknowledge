@@ -1,0 +1,43 @@
+{
+  "node": "rd/backend/rails/custom-validation-method-execution-order",
+  "questions": [
+    {
+      "type": "choice",
+      "q": "用 validate :method_a, :method_b 註冊兩個自訂驗證方法，若 method_a 判定失敗（加了錯誤），method_b 會發生什麼？",
+      "options": [
+        "因為 method_a 已失敗，method_b 不會被執行",
+        "method_b 依然會照順序執行，不會因 method_a 失敗而中止",
+        "method_b 會改成只讀模式執行",
+        "Rails 會隨機決定是否執行 method_b"
+      ],
+      "answer": 1
+    },
+    {
+      "type": "choice",
+      "q": "valid? 最終回傳 false 的判斷依據是什麼？",
+      "options": [
+        "所有驗證方法跑完後，errors collection 是否為空",
+        "第一個執行的驗證方法是否失敗",
+        "最後一個執行的驗證方法是否失敗",
+        "是否有任何驗證方法拋出例外"
+      ],
+      "answer": 0
+    },
+    {
+      "type": "choice",
+      "q": "若自訂驗證方法 B 假設『方法 A 已經擋下某個異常狀態』而省略自己的 nil 檢查，這個假設在 Rails 的驗證機制下有什麼風險？",
+      "options": [
+        "沒有風險，因為 A 失敗後 B 一定不會執行",
+        "有風險，因為 A、B 是依序都執行而非互斥跳過，B 仍可能對異常資料操作而拋例外",
+        "只有在 strict: true 時才有風險",
+        "只有自訂 context 才有這個風險"
+      ],
+      "answer": 1
+    },
+    {
+      "type": "scenario",
+      "q": "Invoice model 有兩個自訂驗證方法：check_customer_exists（檢查 customer 是否存在）與 check_customer_active（呼叫 customer.active? 檢查是否啟用），註冊順序是 check_customer_exists 在前。QA 測試時故意送一個 customer_id 對應不存在的客戶，結果 API 回應是 500 而非驗證錯誤，該如何分析並設計後續 TC？",
+      "answer": "推測 check_customer_active 沒有先判斷 customer 是否為 nil，就直接呼叫 customer.active?，而 check_customer_exists 雖然先判斷了但兩者是依序都執行而非互斥跳過；設計 TC 專門針對『不存在的 customer_id』與『存在但未啟用的 customer』兩種情境分別驗證，確認回應是乾淨的 4xx 驗證錯誤而非 500；並提醒 RD 這類自訂驗證方法間的隱性依賴需要補上防呆判斷。"
+    }
+  ]
+}

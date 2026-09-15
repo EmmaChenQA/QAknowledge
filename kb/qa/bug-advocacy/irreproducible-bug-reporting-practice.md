@@ -7,6 +7,7 @@ topic: qa-bug-advocacy
 confidence: author-material
 updated: 2026-09-15
 sources: [BBST Bug Advocacy Lecture 4 §Non-Reproducible Failures / Can You Reproduce the Problem / Throwing Bugs Into the Dumpster, slides 115-120, 136-138 (CC BY-SA 4.0, Kaner/Fiedler, bbst.courses)]
+source_lang: en
 related: [qa/bug-advocacy/hidden-critical-conditions-checklist, qa/bug-advocacy/bug-report-essential-fields]
 summary: 無法重現不代表沒問題，回報方式與後續追蹤有固定紀律，不該急著關單。
 ---

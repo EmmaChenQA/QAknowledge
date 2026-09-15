@@ -7,6 +7,7 @@ topic: qa-exploratory
 confidence: author-material
 updated: 2026-09-15
 sources: [Test Heuristics Cheat Sheet p1-2（CC BY-SA 4.0，Elisabeth Hendrickson／James Lyndsay／Dale Emery，Ministry of Testing）]
+source_lang: en
 related: [rd/backend/untrusted-input-validation-boundary, rd/backend/json-numeric-precision-pitfalls]
 summary: 字串與數字輸入驗證要測的具體邊界值清單，不是抽象的「測邊界」而已
 ---

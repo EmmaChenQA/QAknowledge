@@ -7,6 +7,7 @@ topic: qa-exploratory
 confidence: author-material
 updated: 2026-09-15
 sources: [Test Heuristics Cheat Sheet p4（CC BY-SA 4.0，James Lyndsay／Elisabeth Hendrickson 等，Ministry of Testing）]
+source_lang: en
 related: [rd/backend/untrusted-input-validation-boundary]
 summary: 邊界、金髮姑娘、CRUD、0/1/多、部分/全無/全部等一組隨手可套用的測試思考模板
 ---

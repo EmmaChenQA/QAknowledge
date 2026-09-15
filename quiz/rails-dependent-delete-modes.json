@@ -1,0 +1,43 @@
+{
+  "node": "rd/backend/rails/dependent-delete-modes",
+  "questions": [
+    {
+      "type": "choice",
+      "q": "belongs_to :author, dependent: :delete_all 刪除 author 時，關聯的 book 記錄會發生什麼？",
+      "options": [
+        "逐筆呼叫 destroy，觸發 before_destroy/after_destroy callback",
+        "外鍵被設為 NULL，book 記錄保留",
+        "刪除動作被擋下，author 無法刪除",
+        "直接對資料庫下 DELETE，跳過 callback 與驗證"
+      ],
+      "answer": 3
+    },
+    {
+      "type": "choice",
+      "q": "has_many :books, dependent: :restrict_with_error，當 author 底下還有 book 時呼叫 author.destroy，實際會發生什麼？",
+      "options": [
+        "拋出 ActiveRecord::DeleteRestrictionError 例外",
+        "book 的外鍵被設為 NULL",
+        "author 與所有 book 一起被刪除",
+        "destroy 回傳 false 並在 author 上加驗證錯誤，不拋例外"
+      ],
+      "answer": 3
+    },
+    {
+      "type": "choice",
+      "q": "QA 測 dependent: :nullify 時，發現刪除主記錄當下直接噴出資料庫層級的未攔截例外而非乾淨的錯誤訊息，最可能的原因是？",
+      "options": [
+        "應該改用 :destroy 模式才會噴例外",
+        "nullify 模式本身有 bug，不該噴例外",
+        "測試資料庫版本過舊不支援 nullify",
+        "外鍵欄位在資料庫層有 NOT NULL 約束，被設 NULL 時違反約束"
+      ],
+      "answer": 3
+    },
+    {
+      "type": "scenario",
+      "q": "PM 要求「刪除訂單時要一併清掉退款附件檔案」，RD 用 has_many :attachments, dependent: :delete_all 實作。QA 該怎麼設計測試找出這個實作可能的問題？",
+      "answer": "1) 先確認附件檔案的實際清除邏輯是否掛在 attachment model 的 destroy callback（如 after_destroy 刪實體檔案）；2) :delete_all 會跳過 callback，若清檔邏輯在 callback 裡，資料庫記錄會被刪但實體檔案殘留成孤兒檔案；3) 實測：建訂單與附件，刪訂單後檢查資料庫記錄是否消失、同時檢查檔案系統/物件儲存上的實體檔案是否也消失；4) 若發現記錄刪了但檔案還在，判定應改用 :destroy 或另外處理清檔，回報給 RD 確認設計意圖。"
+    }
+  ]
+}

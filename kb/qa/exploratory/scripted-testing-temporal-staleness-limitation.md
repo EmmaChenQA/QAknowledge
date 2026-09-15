@@ -7,6 +7,7 @@ topic: qa-exploratory
 confidence: author-material
 updated: 2026-09-15
 sources: [Kaner "Exploratory Testing" BBST Fall 2006 lecture slides 5-17 (CC BY-SA 2.0)]
+source_lang: en
 related: [qa/exploratory/scripted-vs-exploratory-when-to-use, qa/exploratory/risk-based-regression-heuristics-rcrcrc-failure]
 summary: 腳本測試在專案早期設計好就反覆執行，需求與環境卻持續演變，回歸全過只能證明通過固定批次，無法證明沒有新型設計缺陷。
 ---

@@ -7,6 +7,7 @@ topic: qa-foundations
 confidence: author-material
 updated: 2026-09-15
 sources: [BBST Foundations Lecture 6 §Surrogate (or Proxy) Measures / We've Seen This Before (Coverage) / Distortion and Dysfunction / Recap (CC BY-SA 4.0, Kaner/Bach, bbst.courses)]
+source_lang: en
 related: [qa/foundations/coverage-multidimensional, qa/foundations/metrics-gaming-in-testing]
 summary: 測試品質、進度等屬性難以直接測量，常被 bug 數量或覆蓋率等替代指標取代，其有效性取決於建構效度。
 ---

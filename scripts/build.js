@@ -72,7 +72,7 @@ const nodes = walk(path.join(ROOT, 'kb'), '.md')
     const id = meta.id || path.relative(path.join(ROOT, 'kb'), p).replace(/\.md$/, '');
     return {
       id, title: meta.title || id, aliases: meta.aliases || [], tags: meta.tags || [],
-      topic: meta.topic || 'misc', confidence: meta.confidence || '', updated: meta.updated || '', summary: meta.summary || '',
+      topic: meta.topic || 'misc', confidence: meta.confidence || '', source_lang: meta.source_lang || '', updated: meta.updated || '', summary: meta.summary || '',
       sources: meta.sources || [], related: meta.related || [],
       html: md(body), myNote, myNoteHtml: myNote ? md(myNote) : '',
       text: (body + ' ' + myNote + ' ' + (meta.aliases || []).join(' ')).toLowerCase()
@@ -109,8 +109,8 @@ const progress = fs.existsSync(progressPath) ? JSON.parse(fs.readFileSync(progre
 
 fs.writeFileSync(path.join(ROOT, 'kb', 'INDEX.md'),
   '<!-- 由 scripts/build.js 產生，勿手改 -->\n# INDEX\n\nAI 開工先讀本檔，比對 aliases 挑節點，再讀命中的原檔。\n\n## 知識節點\n\n'
-  + '| id | title | topic | aliases | confidence | updated | summary |\n|---|---|---|---|---|---|---|\n'
-  + nodes.map(n => `| ${n.id} | ${n.title} | ${n.topic} | ${n.aliases.join('、')} | ${n.confidence}${n.myNote ? ' +筆記' : ''} | ${n.updated} | ${n.summary} |`).join('\n')
+  + '| id | title | topic | aliases | confidence | source_lang | updated | summary |\n|---|---|---|---|---|---|---|---|\n'
+  + nodes.map(n => `| ${n.id} | ${n.title} | ${n.topic} | ${n.aliases.join('、')} | ${n.confidence}${n.myNote ? ' +筆記' : ''} | ${n.source_lang} | ${n.updated} | ${n.summary} |`).join('\n')
   + '\n\n## 經歷筆記（綁定特定情境，只當參考）\n\n'
   + '| date | title | context | nodes | summary |\n|---|---|---|---|---|\n'
   + (notes.length ? notes.map(n => `| ${n.date} | ${n.title} | ${n.context} | ${n.nodes.join('、')} | ${n.summary} |`).join('\n') : '| — | 尚無筆記 | | | |')
@@ -122,6 +122,7 @@ const data = JSON.stringify({ nodes, topics, quizzes, notes, progress }).replace
 
 const html = `<!doctype html>
 <html lang="zh-Hant"><head><meta charset="utf-8"><title>QA Knowledge</title>
+<link rel="icon" href="data:image/svg+xml,${encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect width="24" height="24" rx="6" fill="#2563eb"/><path d="M9 4h7L11 12l5 8H9l-5-8 5-8z" fill="#fff" opacity=".55"/><path d="M15 4h7l-5 8 5 8h-7l-5-8 5-8z" fill="#fff"/></svg>')}">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <style>${css}</style></head><body>
 <header class="top"><div class="brand" data-act="home"><div class="logo"><svg viewBox="0 0 24 24"><path d="M9 4h7L11 12l5 8H9l-5-8 5-8z" fill="#fff" opacity=".55"/><path d="M15 4h7l-5 8 5 8h-7l-5-8 5-8z" fill="#fff"/></svg></div><span class="wm">QA Knowledge</span></div>

@@ -7,6 +7,7 @@ topic: qa-exploratory
 confidence: author-material
 updated: 2026-09-15
 sources: [Test Heuristics Cheat Sheet p6（CC BY-SA 4.0，原創者 Karen N. Johnson、Ben Simo，經 Ministry of Testing 彙整）]
+source_lang: en
 related: [qa/exploratory/risk-based-regression-heuristics-rcrcrc-failure]
 summary: 七字訣定單一功能檢查廣度，避免只驗證表面功能正確就放行，漏掉日誌、連帶影響、異常恢復等面向。
 ---

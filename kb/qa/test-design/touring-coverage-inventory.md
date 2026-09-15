@@ -7,6 +7,7 @@ topic: qa-test-design
 confidence: author-material
 updated: 2026-09-15
 sources: [BBST Test Design Lecture 1 §Tours and Exploration / A Tour Yields an Inventory / Suggestions for Touring, CC BY-SA 4.0, Kaner/Fiedler, bbst.courses]
+source_lang: en
 related: [qa/test-design/test-technique-classification-dimensions]
 summary: 巡覽是圍繞一個主題（功能/變數/錯誤訊息/資料等）快速掃過系統以產出清單，之後才對清單逐項深入測試。
 ---

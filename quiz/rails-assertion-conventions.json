@@ -1,0 +1,43 @@
+{
+  "node": "rd/backend/rails/assertion-conventions",
+  "questions": [
+    {
+      "type": "choice",
+      "q": "要驗證某個操作使某個數值剛好增加 1（如訂單筆數），最貼切的斷言方法是？",
+      "options": [
+        "assert_difference",
+        "assert_response",
+        "assert_equal",
+        "assert_changes"
+      ],
+      "answer": 0
+    },
+    {
+      "type": "choice",
+      "q": "`assert_response :success` 涵蓋的是哪個 HTTP 狀態碼範圍？",
+      "options": [
+        "300-399",
+        "200-299",
+        "400-499",
+        "500-599"
+      ],
+      "answer": 1
+    },
+    {
+      "type": "choice",
+      "q": "「一個測試方法裡塞越多不相關的斷言越有效率，反正全部斷言都過了才算 pass」這個說法對嗎？",
+      "options": [
+        "對，合併多個斷言到同一測試方法可以省執行時間",
+        "錯，多個不相關斷言塞在同一方法，失敗時無法分辨是哪一條斷言出錯，應適度拆分或標註",
+        "錯，因為 minitest 規定一個測試方法只能有一條斷言",
+        "對，minitest 官方建議盡量把斷言合併在一起"
+      ],
+      "answer": 1
+    },
+    {
+      "type": "scenario",
+      "q": "一支寫入類 API 測試目前只寫了 `assert_response :success`，QA 認為這樣不足以證明「扣款金額真的正確扣除」，該怎麼補強這支測試的斷言設計？",
+      "answer": "1) 改用或額外補上 assert_difference，直接驗證帳戶餘額或交易筆數在操作前後確實變化了預期的量；2) 寫入後另外呼叫查詢端點或直接讀資料庫回讀該筆資料，核對欄位值是否與預期一致，而不是只看回應狀態碼；3) 把「請求有沒有成功（狀態碼）」與「資料有沒有正確異動（回讀值）」視為兩件需分開斷言的事，兩者都要驗證、缺一都不能算測試完整；4) 若操作涉及金額，額外考慮用 assert_difference 驗證變動量精確等於預期金額，而非只驗證「有變化」。"
+    }
+  ]
+}

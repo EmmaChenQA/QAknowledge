@@ -7,6 +7,7 @@ topic: qa-test-design
 confidence: author-material
 updated: 2026-09-15
 sources: [BBST Test Design Lecture 4 "Scenario Testing" p.297-315（CC BY-SA 4.0, Kaner/Fiedler, bbst.courses）]
+source_lang: en
 related: [qa/test-design/scenario-testing-story-elements, qa/test-design/scenario-testing-object-event-benefit-lines]
 summary: 用固定提問線索系統化產生情境，一次只沿一條線索深入走完，而非隨意混合編故事
 ---

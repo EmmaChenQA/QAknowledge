@@ -7,6 +7,7 @@ topic: qa-test-design
 confidence: author-material
 updated: 2026-09-15
 sources: [BBST Test Design Lecture 2 §Risk / Risk-Based Testing / Everyone Tests in a Context / Common Information Objectives, CC BY-SA 4.0, Kaner/Fiedler, bbst.courses]
+source_lang: en
 related: [qa/test-design/htsm-guidewords, qa/test-design/failure-mode-catalog-fmea, qa/test-design/project-risk-heuristics, rd/backend/fault-injection-chaos-engineering]
 summary: 風險導向測試的本質是「想像程式怎麼壞、設計測試去逼出這個壞」，但排優先序時常見誤區是只想機率、漏想後果與利害關係人。
 ---

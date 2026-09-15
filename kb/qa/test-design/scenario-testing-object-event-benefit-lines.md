@@ -7,6 +7,7 @@ topic: qa-test-design
 confidence: author-material
 updated: 2026-09-15
 sources: [BBST Test Design Lecture 4 "Scenario Testing" p.297-315（CC BY-SA 4.0, Kaner/Fiedler, bbst.courses）]
+source_lang: en
 related: [qa/test-design/scenario-testing-lines-of-inquiry, qa/test-design/scenario-testing-story-elements]
 summary: 物件生命史、系統事件、效益承諾是三條特別具體的情境線索，各自有容易被漏掉的固定階段
 ---

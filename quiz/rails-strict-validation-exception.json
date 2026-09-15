@@ -1,0 +1,43 @@
+{
+  "node": "rd/backend/rails/strict-validation-exception",
+  "questions": [
+    {
+      "type": "choice",
+      "q": "validates :token, presence: true, strict: true 這條規則驗證失敗時會發生什麼？",
+      "options": [
+        "跟一般驗證一樣，錯誤被加進 errors，valid? 回傳 false",
+        "回傳 nil",
+        "自動重試存檔一次",
+        "直接拋出 ActiveModel::StrictValidationFailed 例外"
+      ],
+      "answer": 3
+    },
+    {
+      "type": "choice",
+      "q": "以下對 strict: true 的敘述何者正確？",
+      "options": [
+        "只影響 save，不影響 valid? 這種查詢方法",
+        "只在 create 時生效，update 時退化為一般驗證",
+        "連本來只是想查詢是否合法的 valid? 呼叫，都會因此拋出例外",
+        "strict: true 等同於在資料庫層加上 NOT NULL 約束"
+      ],
+      "answer": 2
+    },
+    {
+      "type": "choice",
+      "q": "controller 若只 rescue_from ActiveRecord::RecordInvalid，但某個驗證用了 strict: true，最可能發生什麼？",
+      "options": [
+        "Rails 會自動把 StrictValidationFailed 轉型成 RecordInvalid",
+        "StrictValidationFailed 會被同一個 rescue 攔截，行為不變",
+        "該驗證失敗時會變成未被攔截的例外，回應變成 500 而非乾淨的 4xx",
+        "不會有影響，因為 strict 驗證不會失敗"
+      ],
+      "answer": 2
+    },
+    {
+      "type": "scenario",
+      "q": "一支批次 job 逐筆對訂單呼叫 order.valid? 想篩出合法訂單繼續處理、不合法的先跳過記錄下來，但上線後整支 job 在處理到某一筆訂單時就直接中斷停止。身為 QA 該如何懷疑根因並設計驗證？",
+      "answer": "懷疑 Order model 上某個驗證被標了 strict: true（或自訂例外），導致 valid? 呼叫在該筆訂單上直接拋例外而非回傳 false，中斷了整支 job 的迴圈；設計 TC 用一筆已知會觸發該 strict 驗證的訂單資料跑一次批次 job，確認是否真的中斷；並確認 job 的例外處理是否涵蓋了 StrictValidationFailed，讓不合法訂單能被記錄、job 能繼續跑完其餘資料。"
+    }
+  ]
+}

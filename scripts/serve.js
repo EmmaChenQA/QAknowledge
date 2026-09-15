@@ -3,6 +3,7 @@
 const http = require('http'), fs = require('fs'), path = require('path');
 const { execFileSync } = require('child_process');
 const ROOT = path.resolve(__dirname, '..'), PORT = process.env.PORT || 4173;
+const PROGRESS = process.env.QK_PROGRESS ? path.resolve(process.env.QK_PROGRESS) : path.join(ROOT, 'progress.json');
 
 const safe = (base, ...seg) => {
   const p = path.resolve(ROOT, base, ...seg);
@@ -76,7 +77,7 @@ http.createServer((req, res) => {
     req.on('end', () => {
       try {
         const b = JSON.parse(body || '{}');
-        if (url === '/progress') { fs.writeFileSync(path.join(ROOT, 'progress.json'), body); return res.writeHead(204).end(); }
+        if (url === '/progress') { fs.writeFileSync(PROGRESS, body); return res.writeHead(204).end(); }
         const h = handlers[url];
         if (!h) return res.writeHead(404).end();
         h(b);
@@ -88,7 +89,7 @@ http.createServer((req, res) => {
     return;
   }
   if (url === '/progress') {
-    const p = path.join(ROOT, 'progress.json');
+    const p = PROGRESS;
     res.setHeader('Content-Type', 'application/json');
     return res.end(fs.existsSync(p) ? fs.readFileSync(p) : '{"answers":[]}');
   }

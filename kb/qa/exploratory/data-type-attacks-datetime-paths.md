@@ -7,6 +7,7 @@ topic: qa-exploratory
 confidence: author-material
 updated: 2026-09-15
 sources: [Test Heuristics Cheat Sheet p1（CC BY-SA 4.0，Elisabeth Hendrickson／James Lyndsay／Dale Emery，Ministry of Testing）]
+source_lang: en
 related: [rd/backend/clock-skew-and-drift]
 summary: 日期時間與檔案路徑最容易讓系統算錯或讀錯的具體測試值清單
 ---

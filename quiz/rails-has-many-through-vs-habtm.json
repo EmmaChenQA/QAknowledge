@@ -1,0 +1,43 @@
+{
+  "node": "rd/backend/rails/has-many-through-vs-habtm",
+  "questions": [
+    {
+      "type": "choice",
+      "q": "has_and_belongs_to_many 的 join 表如果被加了額外欄位（如建立時間以外的狀態欄），透過關聯讀到的記錄會怎樣？",
+      "options": [
+        "額外欄位會被自動忽略，不會出現在讀出的記錄中",
+        "Rails 會自動報錯拒絕這種 schema",
+        "可以正常讀寫該額外欄位",
+        "讀取正常，但透過關聯寫入該額外欄位會被 Rails 視為唯讀而無法儲存"
+      ],
+      "answer": 3
+    },
+    {
+      "type": "choice",
+      "q": "physician.patients = patients 這種對 has_many :through 集合賦值的操作，join 記錄的自動增刪是否會觸發 join model 的 destroy callback？",
+      "options": [
+        "不會，這是直接對資料庫操作，callback 不會被觸發",
+        "要看 join model 有沒有設 :dependent 才決定",
+        "會，跟呼叫 join_record.destroy 效果相同",
+        "只有新增會觸發 callback，刪除不會"
+      ],
+      "answer": 0
+    },
+    {
+      "type": "choice",
+      "q": "需要在多對多的 join 資料上加驗證邏輯與額外業務屬性，應該選哪種關聯？",
+      "options": [
+        "has_and_belongs_to_many，因為設定較簡單",
+        "都不適合，應改用 belongs_to 分別建立單向關聯",
+        "has_many :through，因為 join model 是獨立模型，支援驗證、callback 與額外屬性",
+        "兩種都可以，效果完全相同"
+      ],
+      "answer": 2
+    },
+    {
+      "type": "scenario",
+      "q": "現有系統用 has_and_belongs_to_many 表達「活動」與「優惠券」的多對多關係。PM 現在要求每筆活動-優惠券的綁定要記錄「綁定人」與「綁定時間」以供稽核。QA 該怎麼判斷這個需求在現行設計下能否直接實作，以及該怎麼測？",
+      "answer": "1) 判斷：habtm 的 join 表可以加欄位，但透過關聯讀到的記錄會被視為唯讀，無法透過關聯寫入綁定人/時間，這代表現行設計無法乾淨支援此需求，官方也建議改用 has_many :through；2) 若 RD 選擇繼續用 habtm 硬加欄位，測試時應驗證能否透過關聯正常寫入這兩個新欄位，預期會寫入失敗或被忽略；3) 若 RD 改為 has_many :through，測試應涵蓋 join model 本身的驗證（綁定人必填等）與 destroy callback（解除綁定時稽核記錄是否照規則保留或清除）；4) 額外測批次賦值集合（如一次更新活動的優惠券清單）是否會繞過 join model 的 callback 導致稽核記錄遺漏。"
+    }
+  ]
+}

@@ -7,6 +7,7 @@ topic: qa-foundations
 confidence: author-material
 updated: 2026-09-15
 sources: [BBST Foundations Lecture 5 §Complete Testing / Test Every Input / The Basic Combination Rule / It's Not Just Configuration Testing (CC BY-SA 4.0, Kaner/Bach, bbst.courses)]
+source_lang: en
 related: [qa/foundations/coverage-multidimensional, qa/foundations/path-sequence-testing-blind-spots, qa/foundations/sampling-strategy-design]
 summary: 完整測試須窮舉所有輸入、組合、序列與時序，數量呈組合爆炸，實務上不可能做到。
 ---

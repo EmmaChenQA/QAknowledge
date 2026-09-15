@@ -7,6 +7,7 @@ topic: qa-bug-advocacy
 confidence: author-material
 updated: 2026-09-15
 sources: [BBST Bug Advocacy Lecture 2 §Motivating the Bug Fixer, slide 43; Lecture 4/5 §Overcoming Objections, slides 114, 142-143, 147, 154, 156 (CC BY-SA 4.0, Kaner/Fiedler, bbst.courses)]
+source_lang: en
 related: [qa/bug-advocacy/bug-report-as-persuasion, qa/bug-advocacy/credibility-building-and-destroying-behaviors]
 summary: 工程師願不願意花時間修一個缺陷，取決於一組可預期的心理誘因與抗拒理由，報告可針對性回應。
 ---

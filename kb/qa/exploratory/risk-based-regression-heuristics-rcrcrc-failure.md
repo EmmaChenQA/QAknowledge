@@ -7,6 +7,7 @@ topic: qa-exploratory
 confidence: author-material
 updated: 2026-09-15
 sources: [Test Heuristics Cheat Sheet p6（CC BY-SA 4.0，原創者 Karen N. Johnson、Ben Simo，經 Ministry of Testing 彙整）]
+source_lang: en
 related: [qa/exploratory/single-function-check-breadth-heuristic-failure]
 summary: 六字訣定回歸測試優先順序，時間有限、不可能每次全部回歸時，用來決定先測哪些、後測哪些。
 ---

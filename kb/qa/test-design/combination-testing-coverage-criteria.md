@@ -7,6 +7,7 @@ topic: qa-test-design
 confidence: author-material
 updated: 2026-09-15
 sources: [BBST Test Design Lecture 6 "Multivariable Testing" p.446-449, 475-485（CC BY-SA 4.0, Kaner/Fiedler, bbst.courses）]
+source_lang: en
 related: [qa/test-design/combination-testing-variable-independence, qa/test-design/combination-testing-coverage-axes]
 summary: 組合測試覆蓋層級由弱到強分全單值/全成對/全三元組/全N元組，層級越高越能抓多變數交互缺陷但案例數也越膨脹
 ---

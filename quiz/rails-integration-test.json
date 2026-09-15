@@ -1,0 +1,43 @@
+{
+  "node": "rd/backend/rails/integration-test",
+  "questions": [
+    {
+      "type": "choice",
+      "q": "Rails integration test 依慣例存放在哪個目錄？",
+      "options": [
+        "test/controllers",
+        "test/integration",
+        "test/system",
+        "test/models"
+      ],
+      "answer": 1
+    },
+    {
+      "type": "choice",
+      "q": "測試流程中若某一步是 redirect，要讓測試接著驗證跳轉後的頁面內容，需要呼叫什麼？",
+      "options": [
+        "assert_redirected_to",
+        "visit",
+        "click_on",
+        "follow_redirect!"
+      ],
+      "answer": 3
+    },
+    {
+      "type": "choice",
+      "q": "「每一支 controller test 都各自綠燈，就代表整條使用者流程一定沒問題」這個說法對嗎？",
+      "options": [
+        "對，只要單元/controller 測試都涵蓋了就代表整體沒問題",
+        "對，只要測試覆蓋率達到 100% 就足以保證流程正確",
+        "錯，各自綠燈不代表串起來的流程銜接正確，需要 integration test 補這塊驗證",
+        "錯，因為 controller test 本身就已經涵蓋了完整的多步驟流程"
+      ],
+      "answer": 2
+    },
+    {
+      "type": "scenario",
+      "q": "「建立文章 → 導向文章頁 → 顯示成功訊息」這條流程，單獨測 create action 與單獨測 show action 都各自通過，但使用者實際操作卻卡在中間銜接不上。QA 該怎麼用 integration test 抓出這類問題？",
+      "answer": "1) 寫一條從 create 串到 show 的 integration test，依序發出請求而非各自獨立測試；2) 每個跳轉點都要斷言頁面內容，而不是只斷言最終狀態成功；3) 確實呼叫 follow_redirect! 讓測試真的跟著走到下一頁，否則會誤以為驗證了跳轉後頁面、實際上還停在跳轉前；4) 藉由串連測試抓出「兩支各自沒問題、但串起來銜接壞掉」的斷鏈情境，這類問題單獨的 controller test 天生測不出來。"
+    }
+  ]
+}

@@ -7,6 +7,7 @@ topic: qa-exploratory
 confidence: author-material
 updated: 2026-09-15
 sources: [Bach "Exploratory Testing Explained" v1.3 §Practicing Exploratory Testing, §Managing Exploratory Testing pp.4-7 (2002-2003), Kaner "Exploratory Testing" BBST Fall 2006 lecture slides 96-108 (CC BY-SA 2.0)]
+source_lang: en
 related: [qa/exploratory/scripted-vs-exploratory-when-to-use, qa/exploratory/exploratory-tester-core-skills, qa/exploratory/session-based-test-management-modes-and-coverage-illusion]
 summary: 探索式測試沒有固定案例清單可算完成率，改用章程界定任務範圍，判斷測夠了要看章程有沒有被完整履行、覆蓋輪廓有沒有涵蓋預期功能面。
 ---

@@ -7,6 +7,7 @@ topic: qa-foundations
 confidence: author-material
 updated: 2026-09-15
 sources: [BBST Foundations Lecture 5 §Paths and Subpaths / Data Flows / Sequences / The Telenova Stack Failure (CC BY-SA 4.0, Kaner/Bach, bbst.courses)]
+source_lang: en
 related: [qa/foundations/exhaustive-testing-impossible, qa/foundations/coverage-multidimensional, qa/foundations/cumulative-state-defects]
 summary: 達到 100% 敘述與分支覆蓋率的少數路徑，仍可能漏掉資料流路徑，且覆蓋率天生量不到操作次數這個維度。
 ---

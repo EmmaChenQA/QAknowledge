@@ -7,6 +7,7 @@ topic: qa-exploratory
 confidence: author-material
 updated: 2026-09-15
 sources: [Kaner "Exploratory Testing" BBST Fall 2006 lecture slides 73-90 (CC BY-SA 2.0), Bach "Exploratory Testing Explained" v1.3 pp.1, 9-10 (2002-2003)]
+source_lang: en
 related: [qa/exploratory/exploratory-testing-common-misconceptions, qa/exploratory/exploratory-testing-four-activities]
 summary: 探索式測試常被窄化理解成只測功能、不能用工具、不能事前準備；實際上範圍、工具與準備程度都不受限，關鍵在學習與選擇。
 ---

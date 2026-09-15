@@ -7,6 +7,7 @@ topic: qa-foundations
 confidence: author-material
 updated: 2026-09-15
 sources: [BBST Foundations Lecture 3 §Consistency Oracles / Another Look at Oracles / More Types of Oracles (CC BY-SA 4.0, Kaner/Bach, bbst.courses)]
+source_lang: en
 related: [qa/foundations/oracle-problem]
 summary: oracle 有多種啟發式類型（一致性、回歸、模型、統計⋯），每種都只驗部分面向、各自有明確盲區。
 ---

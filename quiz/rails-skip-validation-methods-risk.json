@@ -1,0 +1,43 @@
+{
+  "node": "rd/backend/rails/skip-validation-methods-risk",
+  "questions": [
+    {
+      "type": "choice",
+      "q": "下列哪個方法『不會』跳過 Active Record 的驗證？",
+      "options": [
+        "save",
+        "update_all",
+        "toggle!",
+        "update_column"
+      ],
+      "answer": 0
+    },
+    {
+      "type": "choice",
+      "q": "後台管理系統用 update_columns 快速改一筆訂單狀態，這個操作對驗證規則的影響是？",
+      "options": [
+        "只跳過 uniqueness 驗證，其他驗證照常執行",
+        "會照常執行 model 上定義的所有 validates 規則",
+        "完全跳過驗證，即使結果違反 validates 規則也會寫入成功",
+        "會先跑驗證，失敗才允許跳過"
+      ],
+      "answer": 2
+    },
+    {
+      "type": "choice",
+      "q": "save(validate: false) 這個寫法常見的風險是什麼？",
+      "options": [
+        "效能比正常 save 差",
+        "只是語法糖，實際上仍會驗證",
+        "被留在正式程式碼中成為長期繞過驗證的隱藏路徑",
+        "會讓 model 拋出例外"
+      ],
+      "answer": 2
+    },
+    {
+      "type": "scenario",
+      "q": "測試發現：透過一般後台表單修改會員資料，空白姓名會被擋下；但透過『批次匯入』功能匯入的資料卻出現姓名為空白的會員。身為 QA 你會如何判斷根因、設計後續驗證？",
+      "answer": "先查批次匯入功能的實作是否使用了 update_column/update_all/insert_all 等跳過驗證的方法；若確認是，這不是隨機 bug 而是設計上的驗證漏洞，需要向 RD 確認是否為刻意設計（如效能考量）；若非刻意，應建議在批次匯入前或後補一層驗證；後續 TC 應涵蓋所有已知的批次/後台快速編輯功能，逐一確認是否共用同樣繞過驗證的寫入路徑。"
+    }
+  ]
+}

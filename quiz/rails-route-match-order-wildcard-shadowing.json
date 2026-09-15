@@ -1,0 +1,43 @@
+{
+  "node": "rd/backend/rails/route-match-order-wildcard-shadowing",
+  "questions": [
+    {
+      "type": "choice",
+      "q": "routes.rb 中 `get \"photos/poll\"` 被放在 `resources :photos` 之後，實際發送 GET /photos/poll 會發生什麼？",
+      "options": [
+        "正常命中 poll 這條新路由",
+        "Rails 會自動選擇比較新宣告的那條路由",
+        "回應 500 錯誤，因為路由衝突",
+        "被 resources 產生的 /photos/:id（show）先攔截，poll 被當成 id 值，poll 這條路由永遠到不了"
+      ],
+      "answer": 3
+    },
+    {
+      "type": "choice",
+      "q": "Rails 比對 routes.rb 裡多條路由的順序原則是？",
+      "options": [
+        "由下而上比對，最後宣告的優先",
+        "按路徑字母順序自動排序",
+        "由上而下依宣告順序比對，第一條符合的路由勝出",
+        "由 Rails 依動詞自動決定順序，跟宣告順序無關"
+      ],
+      "answer": 2
+    },
+    {
+      "type": "choice",
+      "q": "一個 catch-all 萬用字元路由（如 `get \"*path\", to: \"errors#not_found\"`）若宣告位置太早，最可能造成什麼問題？",
+      "options": [
+        "會吃掉合法但宣告在它後面的具體路由，讓那些路由永遠比對不到",
+        "只會影響靜態檔案，不影響一般路由",
+        "會讓應用程式啟動失敗",
+        "完全沒有影響，萬用字元不會搶其他路由"
+      ],
+      "answer": 0
+    },
+    {
+      "type": "scenario",
+      "q": "本票在 routes.rb 新增一條 `get \"users/new\"` 之外的靜態路徑，且宣告在 `resources :users` 之後。QA 該怎麼設計測試找出可能的路由遮蔽問題？",
+      "answer": "1) 先看 diff，確認新路由的宣告位置是在對應 resources 區塊之前還是之後；2) 若在後面且路徑會落入 `/:id` 的比對範圍，實際發送請求到該路徑，從回應內容或錯誤訊息反推命中的是哪個 controller#action；3) 若命中的是 show 而非新路由的 action，判定為路由遮蔽缺陷，需將新路由移到 resources 之前或用更明確的約束排除衝突；4) 同時檢查專案內是否有 catch-all 萬用字元路由，若有需確認其宣告位置沒有搶在本次新路由之前。"
+    }
+  ]
+}

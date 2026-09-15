@@ -1,0 +1,43 @@
+{
+  "node": "rd/backend/rails/counter-cache-staleness",
+  "questions": [
+    {
+      "type": "choice",
+      "q": "對一張既有大表新增 counter_cache，正確的上線順序是？",
+      "options": [
+        "只要加欄位就好，Rails 會自動算出所有既有筆數",
+        "先加欄位並啟用 counter_cache，再慢慢回填舊資料",
+        "順序不重要，Rails 會自動處理未初始化的快取",
+        "先安全回填欄位值，回填完成後才啟用 counter_cache"
+      ],
+      "answer": 3
+    },
+    {
+      "type": "choice",
+      "q": "counter_cache: { active: false } 這個設定的用途是？",
+      "options": [
+        "完全停用 counter cache 功能",
+        "停用該關聯的所有寫入操作",
+        "把快取欄位重設為 0",
+        "讓方法暫時繞過快取改查資料庫，同時仍維護快取欄位更新，供安全回填期間使用"
+      ],
+      "answer": 3
+    },
+    {
+      "type": "choice",
+      "q": "手動變更擁有者模型的主鍵值，但沒有同步更新子記錄的外鍵，counter_cache 欄位會發生什麼？",
+      "options": [
+        "自動偵測主鍵變更並修正快取值",
+        "快取值不會自動修正，孤兒子記錄仍會被計入計數，造成快取與實際筆數不同步",
+        "快取欄位會被重設為 NULL",
+        "下次查詢時 Rails 會拋出不一致例外"
+      ],
+      "answer": 1
+    },
+    {
+      "type": "scenario",
+      "q": "QA 發現某個 author.books.size 顯示 5，但用 SQL 直接 COUNT(*) 查出來只有 3 筆。該怎麼一步步排查根因？",
+      "answer": "1) 先確認 books_count 欄位是否真的被宣告為 counter_cache（檢查 belongs_to 宣告與遷移檔）；2) 查是否有透過 :delete_all 或直接 SQL 刪除 book 記錄，這類操作會繞過 Rails callback 導致快取沒被扣減；3) 查 author 的主鍵是否曾被手動變更過，且變更時未同步更新 book 的外鍵，導致孤兒記錄仍計入舊 author 的計數；4) 若是新加的 counter_cache，檢查上線時是否有先做安全回填；5) 確認根因後用 reset_counters 校正，並回報 RD 是否需要補上防止繞過 callback 的機制或回填流程。"
+    }
+  ]
+}

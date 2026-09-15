@@ -7,6 +7,7 @@ topic: qa-test-design
 confidence: author-material
 updated: 2026-09-15
 sources: [BBST Test Design Lecture 6 "Multivariable Testing" p.489-513（CC BY-SA 4.0, Kaner/Fiedler, bbst.courses）]
+source_lang: en
 related: [qa/test-design/combination-testing-coverage-criteria, qa/test-design/combination-testing-breaking-constraints, rd/backend/untrusted-input-validation-boundary]
 summary: 組合測試前先判斷變數是否獨立、有無約束關係，決定該套用機械覆蓋還是改測約束邊界本身
 ---

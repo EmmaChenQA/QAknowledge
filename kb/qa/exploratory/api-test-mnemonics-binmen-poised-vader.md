@@ -7,6 +7,7 @@ topic: qa-exploratory
 confidence: author-material
 updated: 2026-09-15
 sources: [Test Heuristics Cheat Sheet p3（CC BY-SA 4.0，原創者 Gwen Diagram／Ash Winter、Amber Race、Stuart Ashman，經 Ministry of Testing 彙整）]
+source_lang: en
 related: [rd/backend/api-status-codes, rd/backend/api-error-format, rd/backend/api-auth-error-401-403]
 summary: 三組英文縮寫口訣，快速掃描 API 測試該涵蓋的面向，避免只測正常路徑
 ---

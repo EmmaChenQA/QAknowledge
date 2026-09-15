@@ -7,6 +7,7 @@ topic: qa-bug-advocacy
 confidence: author-material
 updated: 2026-09-15
 sources: [BBST Bug Advocacy Lecture 3 §Typical Fields in a Problem Report, slides 91, 94-105; §Fields I Avoid, slides 106-110 (CC BY-SA 4.0, Kaner/Fiedler, bbst.courses)]
+source_lang: en
 related: [qa/bug-advocacy/failure-when-bug-summary, qa/bug-advocacy/rimgen-followup-testing]
 summary: 一份好缺陷報告要有的欄位骨架，以及哪些欄位不該硬塞資料造成垃圾進垃圾出。
 ---

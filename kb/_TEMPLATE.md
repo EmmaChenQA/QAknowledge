@@ -5,6 +5,7 @@ aliases: [同義詞, 口語說法, English term]
 tags: [tag1, tag2]
 topic: tx            # 見 kb/_topics.json 的 key
 confidence: book        # book=書上原理 | author-material=作者本人公開發表資料(非該書全文) | verified=實測過 | inferred=推論
+source_lang: en          # 正文改寫自英文原文才填 en；來源本來就是中文則整行不寫
 updated: 2026-09-15
 sources: [書名 pXX, URL]
 related: [rd/backend/other]

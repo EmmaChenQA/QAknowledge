@@ -7,6 +7,7 @@ topic: qa-test-design
 confidence: author-material
 updated: 2026-09-15
 sources: [BBST Test Design Lecture 2 §Using HTSM to Guide Testing, CC BY-SA 4.0, Kaner/Fiedler, bbst.courses]
+source_lang: en
 related: [qa/test-design/htsm-guidewords]
 summary: 引導詞可單獨套用或交叉組合逼出更細緻風險，但產出仍需轉成實際測試案例並隨專案更新
 ---

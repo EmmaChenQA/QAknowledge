@@ -7,6 +7,7 @@ topic: qa-test-design
 confidence: author-material
 updated: 2026-09-15
 sources: [BBST Test Design Lecture 2 §Project-Level Risk Analysis / Project Risk Heuristics: Where to Look for Errors, CC BY-SA 4.0, Kaner/Fiedler, bbst.courses]
+source_lang: en
 related: [qa/test-design/risk-based-testing-fundamentals, qa/test-design/failure-mode-catalog-fmea, qa/test-design/invisible-vs-visible-risk]
 summary: 用專案層級的線索（新/變更/複雜/關鍵/第三方等特徵）為待測範圍打分，找出該優先測的區域，線索會疊加。
 ---

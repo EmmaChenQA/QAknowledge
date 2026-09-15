@@ -1,0 +1,43 @@
+{
+  "node": "rd/backend/rails/validation-trigger-timing",
+  "questions": [
+    {
+      "type": "choice",
+      "q": "以下哪個操作『不會』自動觸發 Active Record 的 validates 驗證？",
+      "options": [
+        "呼叫 save",
+        "用 new 建立物件並賦值屬性",
+        "呼叫 update",
+        "呼叫 create!"
+      ],
+      "answer": 1
+    },
+    {
+      "type": "choice",
+      "q": "一個物件只用 Person.new(name: nil) 建立、尚未呼叫 valid? 或 save，此時 person.errors 會是什麼狀態？",
+      "options": [
+        "為空集合，因為驗證尚未執行",
+        "拋出例外",
+        "自動呼叫 save 並回傳 false",
+        "立刻填入 name 不可為空的錯誤"
+      ],
+      "answer": 0
+    },
+    {
+      "type": "choice",
+      "q": "關於『資料庫是否保證 validates 規則生效』，下列敘述何者正確？",
+      "options": [
+        "validates 等同資料庫的 NOT NULL 約束",
+        "資料庫會自動套用 validates 規則",
+        "只要 model 定義了 validates，任何寫入路徑都會被擋下",
+        "validates 只是應用層邏輯，資料庫本身不保證，需程式碼確實走到 save/create/update"
+      ],
+      "answer": 3
+    },
+    {
+      "type": "scenario",
+      "q": "票面要求『訂單金額不可為負數』，RD 說已在 Order model 加上 validates :amount, numericality: { greater_than: 0 }。身為 QA 你該怎麼設計 TC 才能真正驗證這條規則在所有寫入路徑都生效？",
+      "answer": "分別測試建立訂單（create）與修改訂單金額（update）兩條路徑送負數金額，確認都被擋下；確認測的是走完整 API/controller 流程而非直接呼叫 model 方法；額外查證是否有背景 job、批次匯入、後台快速編輯等不經過 create/save/update 的寫入入口，這些入口可能繞過驗證；若懷疑某入口用了 update_column 等跳過驗證的方法，需另外查證（見 skip-validation-methods-risk 節點）。"
+    }
+  ]
+}

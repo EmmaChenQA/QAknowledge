@@ -7,6 +7,7 @@ topic: qa-bug-advocacy
 confidence: author-material
 updated: 2026-09-15
 sources: [BBST Bug Advocacy Lecture 4 §Examples of Conditions Often Missed, slides 123-135 (CC BY-SA 4.0, Kaner/Fiedler, bbst.courses)]
+source_lang: en
 related: [qa/bug-advocacy/irreproducible-bug-reporting-practice, rd/backend/fault-injection-chaos-engineering, rd/backend/clock-skew-and-drift]
 summary: 重現不出來時，先對照這份常見被忽略的臨界條件分類，逐項排除再判定無法重現。
 ---

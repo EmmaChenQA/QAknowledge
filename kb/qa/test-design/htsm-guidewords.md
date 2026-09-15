@@ -7,6 +7,7 @@ topic: qa-test-design
 confidence: author-material
 updated: 2026-09-15
 sources: [BBST Test Design Lecture 2 §Guidewords / Heuristic Test Strategy Model, CC BY-SA 4.0, Kaner/Fiedler, bbst.courses]
+source_lang: en
 related: [qa/test-design/risk-based-testing-fundamentals, qa/test-design/failure-mode-catalog-fmea, qa/test-design/htsm-guideword-application]
 summary: HTSM 提供三層引導詞（產品元素/專案環境/品質標準），逼團隊系統性掃過系統各面向而非只靠直覺
 ---

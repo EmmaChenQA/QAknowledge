@@ -7,6 +7,7 @@ topic: qa-exploratory
 confidence: author-material
 updated: 2026-09-15
 sources: [Test Heuristics Cheat Sheet p4-5（CC BY-SA 4.0，James Lyndsay／Elisabeth Hendrickson 等，Ministry of Testing）]
+source_lang: en
 related: [qa/exploratory/exploratory-heuristics-variable-touchpoint-data-scenario]
 summary: 針對狀態轉移、操作序列、資料依賴與系統地圖繪製四種啟發法，補齊單點驗證漏測「跨步驟跨狀態組合出錯」的問題
 ---

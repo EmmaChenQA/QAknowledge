@@ -7,6 +7,7 @@ topic: qa-bug-advocacy
 confidence: author-material
 updated: 2026-09-15
 sources: [BBST Bug Advocacy Lecture 5 §It's Not a Bug, It's a Feature / Use Oracles to Resolve Arguments / Remember Those Consistency Oracles, slides 148-153 (CC BY-SA 4.0, Kaner/Fiedler, bbst.courses)]
+source_lang: en
 related: [qa/bug-advocacy/motivating-programmer-to-fix]
 summary: 爭論「是不是 bug」本質是爭論該用哪個 oracle 判斷，八種一致性 oracle 能把爭論變成可查證的依據。
 ---

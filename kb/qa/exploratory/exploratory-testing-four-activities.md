@@ -7,6 +7,7 @@ topic: qa-exploratory
 confidence: author-material
 updated: 2026-09-15
 sources: [Kaner "Exploratory Testing" BBST Fall 2006 lecture slides 32-70 (CC BY-SA 2.0), Bach "Exploratory Testing Explained" v1.3 §Exploratory Testing Defined pp.1-3 (2002-2003)]
+source_lang: en
 related: [qa/exploratory/scripted-vs-exploratory-when-to-use, qa/exploratory/exploratory-testing-common-misconceptions]
 summary: 探索式測試不是單一動作，是學習、設計、執行、詮釋四個認知活動同時進行、互相回饋，測試者隨時決定下一步。
 ---

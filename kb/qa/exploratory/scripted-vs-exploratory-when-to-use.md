@@ -7,6 +7,7 @@ topic: qa-exploratory
 confidence: author-material
 updated: 2026-09-15
 sources: [Kaner "Exploratory Testing" BBST Fall 2006 lecture slides 5-17 (CC BY-SA 2.0), Bach "Exploratory Testing Explained" v1.3 §Where ET Fits pp.7-8 (2002-2003)]
+source_lang: en
 related: [qa/exploratory/exploratory-testing-four-activities, qa/exploratory/exploratory-testing-coverage-and-session-tracking, qa/exploratory/scripted-testing-temporal-staleness-limitation]
 summary: 腳本適合風險已充分理解且固定的情境；探索式適合風險輪廓還在變動、需要快速學習或找最重要缺陷的情境，多數專案該混用兩者。
 ---

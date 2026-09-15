@@ -7,6 +7,7 @@ topic: qa-exploratory
 confidence: author-material
 updated: 2026-09-15
 sources: [Kaner "Exploratory Testing" BBST Fall 2006 lecture slides 73-90 (CC BY-SA 2.0), Bach "Exploratory Testing Explained" v1.3 pp.1, 9-10 (2002-2003)]
+source_lang: en
 related: [qa/exploratory/exploratory-testing-four-activities, qa/exploratory/exploratory-tester-core-skills, qa/exploratory/exploratory-testing-scope-and-method-misconceptions]
 summary: 探索式測試常被誤當成隨便亂測、沒有紀錄、沒有方法；實際上它有明確可回溯的測試故事，區分有紀律的探索與真正的隨性亂測。
 ---

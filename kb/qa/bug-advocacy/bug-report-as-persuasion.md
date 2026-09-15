@@ -7,6 +7,7 @@ topic: qa-bug-advocacy
 confidence: author-material
 updated: 2026-09-15
 sources: [BBST Bug Advocacy Lecture 1 §What Is Quality / The Definitions in This Course, slides 26-35 (CC BY-SA 4.0, Kaner/Fiedler, bbst.courses); Lecture 2 §Bug Advocacy = Selling Bugs, slides 40-43]
+source_lang: en
 related: [qa/bug-advocacy/motivating-programmer-to-fix, qa/bug-advocacy/credibility-building-and-destroying-behaviors]
 summary: 品質是對某人的價值，缺陷報告的作用是說服握有決策權的人採取行動，不只是記錄現象。
 ---

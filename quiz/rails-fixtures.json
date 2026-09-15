@@ -1,0 +1,43 @@
+{
+  "node": "rd/backend/rails/fixtures",
+  "questions": [
+    {
+      "type": "choice",
+      "q": "Rails fixtures 檔案是用什麼格式撰寫的？",
+      "options": [
+        "JSON",
+        "YAML",
+        "CSV",
+        "XML"
+      ],
+      "answer": 1
+    },
+    {
+      "type": "choice",
+      "q": "要在兩筆 fixture 之間建立關聯（如 belongs_to），最直接的做法是？",
+      "options": [
+        "手動在兩邊各自指定相同的 id 數字",
+        "必須在測試 setup 裡用程式手動建立關聯",
+        "fixtures 不支援關聯，關聯資料只能另外用 factory 產生",
+        "用 fixture 的名稱當作參照值，Rails 會自動指定一致的 id"
+      ],
+      "answer": 3
+    },
+    {
+      "type": "choice",
+      "q": "「fixtures 應該用來建立測試需要的每一種資料狀態」這個說法對嗎？",
+      "options": [
+        "錯，fixtures 設計上只放共用的預設資料，個別案例需要的特殊資料應在測試內自行建立",
+        "對，fixture 覆蓋率越高，測試越完整",
+        "對，官方建議每個測試案例都準備一份對應 fixture",
+        "錯，fixtures 只能放單一一筆資料，無法放多筆"
+      ],
+      "answer": 0
+    },
+    {
+      "type": "scenario",
+      "q": "兩支測試都用到同一個 fixture `users(:david)`，其中一支測試在執行過程中修改了他的 email 欄位。QA 該如何判斷這是否會汙染另一支測試的結果？",
+      "answer": "1) 先確認兩支測試各自是否處在預設的交易回滾機制下（即未設 use_transactional_tests = false）；2) 若有，修改只會存在於該測試自己的交易內，測試結束即回滾，不會外流到其他測試；3) 若該測試類別關掉了交易回滾（例如為了測併發），則要另外檢查有沒有在測試結束時手動清理，否則修改會真的殘留並汙染後續測試；4) 實測時可故意在兩支測試間插入斷言，讀 fixture 的當前值來驗證隔離是否真的成立。"
+    }
+  ]
+}

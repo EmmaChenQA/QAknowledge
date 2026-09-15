@@ -7,6 +7,7 @@ topic: qa-exploratory
 confidence: author-material
 updated: 2026-09-15
 sources: [Bach "Exploratory Testing Explained" v1.3 §Practicing Exploratory Testing pp.5-6 (2002-2003), Kaner "Exploratory Testing" BBST Fall 2006 lecture slides 96-105 (CC BY-SA 2.0)]
+source_lang: en
 related: [qa/exploratory/exploratory-testing-common-misconceptions, qa/exploratory/exploratory-testing-coverage-and-session-tracking, qa/exploratory/exploratory-tester-idea-generation-and-resource-skills]
 summary: 探索式測試表面像日常技能，實際需要專業級的測試設計、細心觀察與批判性思考能力，技能不足會直接反映成覆蓋漏洞。
 ---

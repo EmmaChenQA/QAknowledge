@@ -7,6 +7,7 @@ topic: qa-test-design
 confidence: author-material
 updated: 2026-09-15
 sources: [BBST Test Design Lecture 5 "Domain Testing" p.402-416（CC BY-SA 4.0, Kaner/Fiedler, bbst.courses）]
+source_lang: en
 related: [qa/test-design/domain-testing-risk-based-equivalence, qa/test-design/domain-testing-non-ordered-variables]
 summary: 對系統理解夠深時改用風險/等價表；系統內部可能存在黑箱測試看不見的隱藏邊界
 ---

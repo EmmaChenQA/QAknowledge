@@ -7,6 +7,7 @@ topic: qa-test-design
 confidence: author-material
 updated: 2026-09-15
 sources: [BBST Test Design Lecture 1 §Best Representative Testing / Domain Testing, CC BY-SA 4.0, Kaner/Fiedler, bbst.courses]
+source_lang: en
 related: [qa/test-design/domain-testing-equivalence-boundary, qa/test-design/domain-testing-non-ordered-variables, qa/test-design/domain-testing-result-variables, qa/test-design/domain-testing-primary-secondary-dimensions]
 summary: 最佳代表把邊界值測試推廣到不可排序的變數；領域測試範圍也擴及輸出值域與多變數組合邊界
 ---

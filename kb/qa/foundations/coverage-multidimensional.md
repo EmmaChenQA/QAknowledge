@@ -7,6 +7,7 @@ topic: qa-foundations
 confidence: author-material
 updated: 2026-09-15
 sources: [BBST Foundations Lecture 4 §Coverage / Structural Code Coverage / Complete Coverage / Other Coverages / Coverage as a Measurement (CC BY-SA 4.0, Kaner/Bach, bbst.courses)]
+source_lang: en
 related: [qa/foundations/exhaustive-testing-impossible, qa/foundations/metrics-distortion-surrogate-measures]
 summary: 覆蓋率是某類事物中已測比例，可依任何清單定義，任一單一覆蓋率再高都不等於測試完整。
 ---

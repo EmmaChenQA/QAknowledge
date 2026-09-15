@@ -7,6 +7,7 @@ topic: qa-exploratory
 confidence: author-material
 updated: 2026-09-15
 sources: [Kaner "Exploratory Testing" BBST Fall 2006 lecture slides 65-67 (CC BY-SA 2.0)]
+source_lang: en
 related: [qa/exploratory/exploratory-testing-four-activities]
 summary: Oracle 是判斷測試通過或失敗的啟發式機制，非萬用公式；同一結果換不同一致性判準可能得出不同判定，需選最貼近測試目的的一種。
 ---

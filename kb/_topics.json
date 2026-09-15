@@ -255,5 +255,56 @@
       "qa/exploratory/web-accessibility-testing-heuristics"
     ],
     "domain": "qa"
+  },
+  {
+    "key": "qa-automation",
+    "name": "自動化與工具化測試",
+    "desc": "checking 與 testing 的分野、GUI 自動化的侷限、工具該輔助人而非取代判斷",
+    "domain": "qa",
+    "order": [
+      "qa/automation/checking-vs-testing-distinction",
+      "qa/automation/tool-not-automation-terminology",
+      "qa/automation/gui-automation-practical-limits",
+      "qa/automation/gui-check-brittleness-sensitivity-tradeoff",
+      "qa/automation/testability-investment",
+      "qa/automation/toolsmith-skill-spectrum",
+      "qa/automation/context-driven-tool-selection-heuristics",
+      "qa/automation/automation-value-evaluation-not-labor-replacement"
+    ]
+  },
+  {
+    "key": "rails",
+    "name": "Rails 框架基礎",
+    "desc": "路由、ActiveRecord 驗證與關聯、官方測試指南——QA 讀後端程式碼與設計測試前的框架知識",
+    "domain": "backend",
+    "order": [
+      "rd/backend/rails/restful-seven-actions",
+      "rd/backend/rails/member-collection-custom-actions",
+      "rd/backend/rails/nested-routes-ownership-boundary",
+      "rd/backend/rails/http-verb-same-path-different-action",
+      "rd/backend/rails/route-segment-format-constraints",
+      "rd/backend/rails/route-match-order-wildcard-shadowing",
+      "rd/backend/rails/validation-trigger-timing",
+      "rd/backend/rails/skip-validation-methods-risk",
+      "rd/backend/rails/uniqueness-validator-not-db-constraint",
+      "rd/backend/rails/validation-context-on-option",
+      "rd/backend/rails/custom-validation-method-execution-order",
+      "rd/backend/rails/strict-validation-exception",
+      "rd/backend/rails/validation-errors-collection-and-api-format",
+      "rd/backend/rails/dependent-delete-modes",
+      "rd/backend/rails/dependent-gotchas",
+      "rd/backend/rails/counter-cache-staleness",
+      "rd/backend/rails/has-many-through-vs-habtm",
+      "rd/backend/rails/association-n-plus-one",
+      "rd/backend/rails/inverse-of-data-consistency",
+      "rd/backend/rails/test-environment",
+      "rd/backend/rails/fixtures",
+      "rd/backend/rails/transactional-test-rollback",
+      "rd/backend/rails/model-test",
+      "rd/backend/rails/controller-functional-test",
+      "rd/backend/rails/integration-test",
+      "rd/backend/rails/system-test",
+      "rd/backend/rails/assertion-conventions"
+    ]
   }
 ]

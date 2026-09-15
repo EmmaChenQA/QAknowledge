@@ -1,0 +1,43 @@
+{
+  "node": "rd/backend/rails/http-verb-same-path-different-action",
+  "questions": [
+    {
+      "type": "choice",
+      "q": "同一路徑 `/photos`，GET 與 POST 分別命中什麼？",
+      "options": [
+        "都命中同一個 action，只是回應內容不同",
+        "GET 一定 404，因為 photos 只接受 POST",
+        "GET 命中 index、POST 命中 create，是兩條完全獨立的路由規則",
+        "由前端 JS 決定要命中哪個 action，跟 HTTP 動詞無關"
+      ],
+      "answer": 2
+    },
+    {
+      "type": "choice",
+      "q": "routes.rb 用 `match \"photos\", to: \"photos#show\", via: :all` 有什麼安全疑慮？",
+      "options": [
+        "只是效能較差，跟安全無關",
+        "完全沒有疑慮，這是官方推薦寫法",
+        "GET 請求不會被檢查 CSRF token，若寫入型 action 也綁在同一路由，等於能繞過 CSRF 防護",
+        "會導致該路由完全無法被存取"
+      ],
+      "answer": 2
+    },
+    {
+      "type": "choice",
+      "q": "QA 只測了「按下刪除按鈕」觸發的 DELETE 請求，這樣的測試設計最可能漏掉什麼？",
+      "options": [
+        "刪除按鈕的顏色是否正確",
+        "同一路徑換成其他動詞（如 GET）是否也意外命中某個 action，造成非預期行為",
+        "刪除後頁面是否有跳轉",
+        "刪除功能本身是否能用"
+      ],
+      "answer": 1
+    },
+    {
+      "type": "scenario",
+      "q": "QA 發現某端點的 routes.rb 用了 `via: :all`。該怎麼設計 TC 驗證是否有安全風險？",
+      "answer": "1) 先確認該路由背後的 action 是否為寫入型（create/update/destroy）；2) 若是，改用 GET 直接打這個端點（不經過表單、不帶 CSRF token），觀察資料庫是否被實際寫入；3) 若 GET 也能成功寫入，判定為缺陷：CSRF 防護被繞過；4) 同時記錄該路由是否真的需要接受所有動詞，若無明確理由應建議改回限定動詞（get/post/patch/delete）。"
+    }
+  ]
+}

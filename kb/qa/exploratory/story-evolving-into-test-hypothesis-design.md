@@ -7,6 +7,7 @@ topic: qa-exploratory
 confidence: author-material
 updated: 2026-09-15
 sources: [Kaner "Exploratory Testing" BBST Fall 2006 lecture slides 50-57 (CC BY-SA 2.0)]
+source_lang: en
 related: [qa/exploratory/test-idea-to-test-design-challenge]
 summary: 從失敗案例拆出多個假說，逐步把測試磨嚴苛，直到有信心判斷假說是否成立，是從風險出發設計測試最具體的操作方法。
 ---

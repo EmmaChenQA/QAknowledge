@@ -7,6 +7,7 @@ topic: qa-test-design
 confidence: author-material
 updated: 2026-09-15
 sources: [BBST Test Design Lecture 5 "Domain Testing" p.407-408（CC BY-SA 4.0, Kaner/Fiedler, bbst.courses）]
+source_lang: en
 related: [qa/test-design/domain-testing-risk-based-equivalence, qa/test-design/domain-testing-non-ordered-no-representative]
 summary: 無法排序的變數（如印表機相容性）沒有邊界值，要用相似度分組而非邊界值思維抽樣
 ---

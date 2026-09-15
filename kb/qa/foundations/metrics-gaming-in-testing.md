@@ -7,6 +7,7 @@ topic: qa-foundations
 confidence: author-material
 updated: 2026-09-15
 sources: [BBST Foundations Lecture 6 §Surrogate (or Proxy) Measures / We've Seen This Before (Coverage) / Distortion and Dysfunction / Recap (CC BY-SA 4.0, Kaner/Bach, bbst.courses)]
+source_lang: en
 related: [qa/foundations/metrics-distortion-surrogate-measures, qa/foundations/coverage-multidimensional]
 summary: bug 數量、覆蓋率、出貨曲線等替代指標一旦綁績效或催出貨，會誘發挑軟柿子、灌水拆分、延後回報等具體博弈行為。
 ---

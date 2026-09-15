@@ -1,0 +1,43 @@
+{
+  "node": "rd/backend/rails/validation-context-on-option",
+  "questions": [
+    {
+      "type": "choice",
+      "q": "validates :email, uniqueness: true, on: :create 這條規則，在 update 一筆已存在資料時會發生什麼？",
+      "options": [
+        "update 時同樣會驗證 email 唯一性",
+        "update 時完全不會跑這條驗證，可以把 email 改成重複值",
+        "update 時會拋出例外",
+        "on: :create 對 uniqueness 無效"
+      ],
+      "answer": 1
+    },
+    {
+      "type": "choice",
+      "q": "自訂驗證情境（如 on: :account_setup）要如何觸發？",
+      "options": [
+        "呼叫一般的 save 就會自動觸發",
+        "物件建立時自動觸發一次",
+        "只有明確呼叫 valid?(:account_setup) 或 save(context: :account_setup) 才會觸發",
+        "情境名稱與 controller action 名稱相同時自動觸發"
+      ],
+      "answer": 2
+    },
+    {
+      "type": "choice",
+      "q": "呼叫 person.valid?(:account_setup) 時，除了 :account_setup 專屬的驗證會跑，還有哪些驗證會一起執行？",
+      "options": [
+        "完全沒有指定 on 的驗證會一起跑",
+        "只有 on: :create 的驗證會一起跑",
+        "所有其他自訂情境的驗證也會跑",
+        "沒有其他驗證會跑，只跑 account_setup 專屬的"
+      ],
+      "answer": 0
+    },
+    {
+      "type": "scenario",
+      "q": "多步驟註冊表單第一步驗證『姓名必填』時用了 on: :step1，但你發現後台管理員可以直接透過『一鍵建立帳號』API 建立姓名為空的使用者。身為 QA 該如何判斷這是否為漏測風險並設計 TC？",
+      "answer": "先確認『一鍵建立帳號』API 呼叫 model 時是否有帶 context: :step1（或等同情境），若沒有，代表這個入口完全沒觸發姓名必填規則；列出所有能建立該筆資料的入口（前台表單各步驟、後台、API），逐一確認各自觸發了哪些驗證情境；針對未涵蓋姓名驗證的入口，設計送空白姓名的 TC 驗證是否真的被放行，並向 RD/PM 確認這是否為刻意設計。"
+    }
+  ]
+}

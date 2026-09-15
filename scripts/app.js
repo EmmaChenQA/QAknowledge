@@ -36,7 +36,7 @@ function markRead(id) { if (isRead(id) || location.hash !== '#n/' + id) return; 
 // ---------- domain filter（側欄專用，不影響首頁；首頁固定依領域分區顯示） ----------
 const DOMAIN_LABEL = { backend: '後端與系統', frontend: '前端', qa: 'QA 技巧' };
 const DOMAIN_SHORT = { all: '全部', backend: '後端', frontend: '前端', qa: 'QA' };
-const DOMAIN_ORDER = ['backend', 'frontend', 'qa'];
+const DOMAIN_ORDER = ['qa', 'backend', 'frontend'];
 let domainFilter = 'all';
 try { domainFilter = localStorage.getItem('qk-domain') || 'all'; } catch (e) {}
 function setDomain(d) {
@@ -77,9 +77,8 @@ function home() {
   const recent = NOTES.slice(0, 3);
   M.innerHTML = '<div class="wrap single"><h1>今天從哪裡開始</h1><p class="lead">' + NODES.length + ' 個概念分成 ' + TOPICS.filter(t => tNodes(t).length).length + ' 個主題。先看主題卡的進度，或直接搜手上票務的關鍵字（⌘K）。</p>'
     + '<div class="tiles"><div class="tile"><small>已讀概念</small><div class="v">' + readN + ' <span style="font-size:14px;color:var(--mut);font-weight:400">/ ' + NODES.length + '</span></div><div class="bar" style="margin:6px 0 4px"><i style="width:' + (readN / NODES.length * 100) + '%"></i></div><small>開啟節點停留幾秒即記為已讀 · 已答題 ' + answered + ' 個</small></div>'
-    + '<div class="tile"><small>今日到期檢測</small><div class="v">' + dueN + '</div>' + A('quiz', '', '去作答 →', '') + '<small style="margin-left:8px">共 ' + QUIZ.reduce((a, q) => a + q.questions.length, 0) + ' 題</small></div>'
+    + '<div class="tile"><small>今天該複習</small><div class="v">' + dueN + '</div>' + A('quiz', '', '去作答 →', '') + '<small style="margin-left:8px">題庫共 ' + QUIZ.reduce((a, q) => a + q.questions.length, 0) + ' 題</small></div>'
     + '<div class="tile"><small>最需要回頭看</small>' + (weak.length ? '<ul class="weak">' + weak.map(([id, v]) => '<li>' + A('node', 'data-id="' + id + '"', esc(short(byId[id].title))) + '<span style="color:var(--bad)">' + Math.round(v.w / v.t * 100) + '%</span></li>').join('') + '</ul>' : '<div style="color:var(--mut);font-size:13px;margin-top:6px">尚無錯題</div>') + '</div></div>'
-    + '<h2 style="font-size:16px;color:var(--mut);font-weight:500;margin:0 0 12px">主題</h2>'
     + DOMAIN_ORDER.map(dom => { const ts = TOPICS.filter(t => t.domain === dom && tNodes(t).length); if (!ts.length) return ''; return '<div class="sec-h">' + DOMAIN_LABEL[dom] + '</div><div class="cards">' + ts.map(t => { const ns = tNodes(t); return '<div class="card" data-act="topic" data-key="' + t.key + '"><b>' + esc(t.name) + '</b><p>' + esc(t.desc) + '</p><div class="bar"><i style="width:' + (readCnt(t) / ns.length * 100) + '%"></i></div><div class="n"><span>' + ns.length + ' 個概念</span><span>已讀 ' + readCnt(t) + ' · 已答 ' + done(st, t) + '</span></div></div>'; }).join('') + '</div>'; }).join('')
     + (recent.length ? '<h2 style="font-size:16px;color:var(--mut);font-weight:500;margin:32px 0 8px">最近的經歷筆記</h2>' + recent.map(n => '<div class="hit" data-act="note" data-file="' + esc(n.file) + '"><b>' + esc(n.title) + '</b> <small>' + esc(n.date) + ' · ' + esc(n.context || '未分類') + '</small></div>').join('') : '')
     + '</div>';
@@ -98,7 +97,8 @@ function show(id) {
   M.innerHTML = '<div class="wrap"><div>'
     + '<div class="stepper">' + A('topic', 'data-key="' + t.key + '"', esc(t.name)) + '<div class="steps">' + ns.map((x, k) => '<i class="' + (k === i ? 'cur' : st[x.id] ? 'd' : '') + '" title="' + esc(short(x.title)) + '"></i>').join('') + '</div><span>' + (i + 1) + ' / ' + ns.length + '</span></div>'
     + '<h1>' + esc(n.title) + '</h1>'
-    + '<div class="meta"><span class="badge" title="來源信心：book 書上原理／verified 實測過／inferred 推論">' + esc(n.confidence) + '</span>'
+    + '<div class="meta"><span class="badge" title="來源信心：book 書上原理／author-material 作者公開資料／verified 實測過／inferred 推論">' + esc(n.confidence) + '</span>'
+    + (n.source_lang === 'en' ? '<span class="badge" title="正文由英文原文改寫翻譯而成">英翻中</span>' : '')
     + '<span class="tags">' + n.tags.map(x => '<a class="tagl" data-act="tag" data-t="' + esc(x) + '">#' + esc(x) + '</a>').join('') + '</span>'
     + '<span>更新 ' + esc(n.updated) + '</span>' + (isRead(id) ? '<span>· 已讀</span>' : '') + (st[id] ? '<span>· 答題 ' + st[id].t + ' 錯 ' + st[id].w + '</span>' : '') + '</div>'
     + (n.summary ? '<p class="lead">' + esc(n.summary) + '</p>' : '')
@@ -127,9 +127,9 @@ function showNotes() {
   const ctxs = [...new Set(NOTES.map(n => n.context).filter(Boolean))];
   M.innerHTML = '<div class="wrap single"><h1>經歷筆記</h1><p class="lead">綁定特定產品／情境的實測經驗，換產業前先確認是否仍適用。共 ' + NOTES.length + ' 則。</p>'
     + (ctxs.length ? '<div class="meta">情境：<span class="tags">' + ctxs.map(c => '<a class="tagl" data-act="tag" data-t="' + esc(c) + '">#' + esc(c) + '</a>').join('') + '</span></div>' : '')
-    + '<p><button class="pri" data-act="new-note">新增筆記</button></p>'
+    + (NOTES.length ? '<p><button class="pri" data-act="new-note">新增筆記</button></p>' : '')
     + NOTES.map(n => '<div class="hit" data-act="note" data-file="' + esc(n.file) + '"><b>' + esc(n.title) + '</b> <small>' + esc(n.date) + ' · ' + esc(n.context || '未分類') + '</small><br><small>' + esc(n.summary || '') + '</small></div>').join('')
-    + (NOTES.length ? '' : '<p style="color:var(--mut)">尚無筆記。</p>') + '</div>';
+    + (NOTES.length ? '' : '<div class="empty"><b>還沒有經歷筆記</b><p>記下某張票、某個產品情境裡實測學到的事；之後查相關節點時會一起帶出來。</p><button class="pri" data-act="new-note">新增第一則筆記</button></div>') + '</div>';
 }
 function showNote(file) {
   const n = NOTES.find(x => x.file === file); if (!n) return; location.hash = 'note/' + encodeURIComponent(file); _r = location.hash; setNav('notes'); side(null);
@@ -141,7 +141,7 @@ function showNote(file) {
 function nodeOptions(sel) { return TOPICS.map(t => '<optgroup label="' + esc(t.name) + '">' + tNodes(t).map(n => '<option value="' + esc(n.id) + '"' + (sel && sel.includes(n.id) ? ' selected' : '') + '>' + esc(short(n.title)) + '</option>').join('') + '</optgroup>').join(''); }
 function formNote(n) {
   location.hash = n ? 'edit/' + encodeURIComponent(n.file) : 'new-note'; _r = location.hash; setNav('notes'); side(null);
-  M.innerHTML = '<div class="wrap single"><h1>' + (n ? '編輯' : '新增') + '經歷筆記</h1>'
+  M.innerHTML = '<div class="wrap single form"><h1>' + (n ? '編輯' : '新增') + '經歷筆記</h1>'
     + '<div class="row"><div><label class="f">日期</label><input type="text" id="f_date" value="' + esc(n ? n.date : new Date().toISOString().slice(0, 10)) + '"></div>'
     + '<div><label class="f">情境（產品／產業／專案）</label><input type="text" id="f_ctx" value="' + esc(n ? n.context : '') + '" placeholder="博彩平台 / 支付"></div></div>'
     + '<label class="f">標題</label><input type="text" id="f_title" value="' + esc(n ? n.title : '') + '">'
@@ -155,7 +155,7 @@ function formNodeNew(presetTopic) {
   location.hash = 'new-node'; _r = location.hash; side(null);
   const dirs = [...new Set(NODES.map(n => n.id.split('/').slice(0, -1).join('/')))];
   const defDir = presetTopic ? (presetTopic === 'vue' ? 'rd/frontend' : presetTopic.startsWith('qa-') ? 'qa/' + presetTopic.slice(3) : 'rd/backend') : dirs[0];
-  M.innerHTML = '<div class="wrap single"><h1>新增節點' + (presetTopic ? '：' + esc((TOPICS.find(t => t.key === presetTopic) || {}).name || '') : '') + '</h1><div class="ro">網頁新增的節點預設 confidence 為 inferred（未經書本或實測佐證）。</div>'
+  M.innerHTML = '<div class="wrap single form"><h1>新增節點' + (presetTopic ? '：' + esc((TOPICS.find(t => t.key === presetTopic) || {}).name || '') : '') + '</h1><div class="ro">網頁新增的節點預設 confidence 為 inferred（未經書本或實測佐證）。</div>'
     + '<div class="row"><div><label class="f">領域目錄</label><select id="f_dir">' + dirs.map(d => '<option' + (d === defDir ? ' selected' : '') + '>' + esc(d) + '</option>').join('') + '</select></div>'
     + '<div><label class="f">id（英文 kebab-case）</label><input type="text" id="f_id" placeholder="rate-limiting"></div>'
     + '<div><label class="f">主題</label><select id="f_topic">' + TOPICS.filter(t => t.key !== 'misc').map(t => '<option value="' + t.key + '"' + (t.key === presetTopic ? ' selected' : '') + '>' + esc(t.name) + '</option>').join('') + '<option value="misc">其他</option></select></div></div>'
@@ -168,7 +168,7 @@ function formNodeNew(presetTopic) {
     + '<button class="pri" data-act="save-node">建立</button> <button data-act="home">取消</button></div>';
 }
 function formQuiz(id) {
-  M.innerHTML = '<div class="wrap single"><h1>新增題目</h1><div class="meta">節點：' + esc(byId[id].title) + '</div>'
+  M.innerHTML = '<div class="wrap single form"><h1>新增題目</h1><div class="meta">節點：' + esc(byId[id].title) + '</div>'
     + '<label class="f">題型</label><select id="f_type"><option value="choice">選擇題</option><option value="scenario">情境題</option></select>'
     + '<label class="f">題目</label><textarea id="f_q" rows="3"></textarea>'
     + '<div id="opts"><label class="f">選項（一行一個）</label><textarea id="f_opts" rows="4"></textarea><label class="f">正解是第幾個（從 1 起算）</label><input type="text" id="f_ans" value="1"></div>'
@@ -199,13 +199,18 @@ function showQuiz(node, all) {
   const total = pool.length; if (!all) pool = pool.filter(q => due(q.node, q.idx));
   const dueCount = pool.length;
   pool.sort(() => Math.random() - 0.5); if (!node) pool = pool.slice(0, 10);
+  const todayKey = new Date().toDateString();
+  const todayCount = progress.answers.filter(a => a.at && new Date(a.at).toDateString() === todayKey).length;
   M.innerHTML = '<div class="wrap single"><h1>知識檢測' + (node ? '：' + esc(short(byId[node].title)) : '') + '</h1>'
-    + '<p class="lead">到期 ' + dueCount + ' / 共 ' + total + (dueCount > pool.length ? '（本頁隨機顯示 ' + pool.length + ' 題）' : '') + (all ? '' : ' · ' + A('quiz-all', 'data-id="' + (node || '') + '"', '全部出題')) + '</p>'
+    + '<p class="lead">待複習：' + dueCount + ' 題　／　今日完成：' + todayCount + ' 題</p>'
+    + '<div class="quiz-hd"><b>本次測驗</b><span class="chip b">' + pool.length + ' 題</span></div>'
+    + '<p class="ro" style="margin:0 0 14px">' + (all ? '不依排程，從全部題庫隨機抽取' : '從待複習題目中隨機抽取') + '</p>'
     + (pool.map((q, k) => '<div class="q" id="q' + k + '"><b>' + (k + 1) + '. ' + esc(q.q) + '</b> <small style="color:var(--mut)">(' + esc(short(byId[q.node] ? byId[q.node].title : q.node)) + ')</small>'
       + (q.type === 'scenario'
         ? '<textarea rows="4" placeholder="先寫你的答案，再看參考"></textarea><button data-act="reveal" data-k="' + k + '">看參考答案</button><div class="r"></div>'
         : q.options.map((o, i) => '<label><input type="radio" name="q' + k + '" value="' + i + '"> ' + esc(o) + '</label>').join('') + '<div class="r"></div>')
-      + '</div>').join('') || '<p>今日無到期題目。' + A('quiz-all', 'data-id="' + (node || '') + '"', '全部出題') + '</p>') + '</div>';
+      + '</div>').join('') || '<p style="color:var(--mut)">今天沒有待複習的題目</p>')
+    + (all ? '' : '<p style="margin-top:22px">' + A('quiz-all', 'data-id="' + (node || '') + '"', '不依排程，隨機抽考全部題庫 →') + '</p>') + '</div>';
   window._pool = pool;
   M.querySelectorAll('input[type=radio]').forEach(r => r.onchange = e => ansChoice(+e.target.name.slice(1), +e.target.value));
 }
@@ -225,10 +230,11 @@ function showWeak() {
   location.hash = 'weak'; _r = location.hash; setNav('weak'); side(null); const s = stats(); const rows = Object.entries(s).filter(([id]) => byId[id]).sort((a, b) => b[1].w / b[1].t - a[1].w / a[1].t);
   M.innerHTML = '<div class="wrap single"><h1>弱點</h1><p class="lead">依錯誤率排序，點節點回去重讀。</p>' + (rows.length
     ? '<table><tr><th>節點</th><th>主題</th><th>答題</th><th>錯</th><th>錯誤率</th></tr>' + rows.map(([id, v]) => '<tr><td>' + A('node', 'data-id="' + id + '"', esc(short(byId[id].title))) + '</td><td>' + esc(topicOf(id).name) + '</td><td>' + v.t + '</td><td>' + v.w + '</td><td>' + Math.round(v.w / v.t * 100) + '%</td></tr>').join('') + '</table>'
-    : '<p>尚無答題紀錄</p>')
-    + '<p style="margin-top:18px"><button data-act="export" title="下載目前所有答題與已讀紀錄，換裝置時可備份或還原">匯出答題紀錄</button> '
+    : '<div class="empty"><b>還沒有答題紀錄</b><p>做幾題知識檢測後，答錯過的節點會依錯誤率排在這裡。</p><button class="pri" data-act="quiz">開始知識檢測</button></div>')
+    + '<div class="util"><div class="util-hd">資料備份</div><p class="ro">答題與已讀紀錄只存在這台電腦的 progress.json，換裝置前先匯出。</p>'
+    + '<button data-act="export" title="下載目前所有答題與已讀紀錄">匯出答題紀錄</button> '
     + '<button data-act="import" title="匯入之前匯出的檔案，與目前紀錄合併，不會覆蓋">匯入答題紀錄</button>'
-    + '<input type="file" id="importFile" accept="application/json" hidden></p></div>';
+    + '<input type="file" id="importFile" accept="application/json" hidden></div></div>';
 }
 function mergeProgress(incoming) {
   progress.reads = progress.reads || {}; progress.answers = progress.answers || [];

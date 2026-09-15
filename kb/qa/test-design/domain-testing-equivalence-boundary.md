@@ -7,6 +7,7 @@ topic: qa-test-design
 confidence: author-material
 updated: 2026-09-15
 sources: [BBST Test Design Lecture 1 §Equivalence Class Analysis / Boundary Testing, CC BY-SA 4.0, Kaner/Fiedler, bbst.courses]
+source_lang: en
 related: [qa/test-design/quicktest-theory-of-error, qa/test-design/domain-testing-best-representative-scope]
 summary: 等價類別是效果相同的輸入值集合，邊界值測試在此之上假設「邊界最容易被程式員寫錯」，優先測每類的上下界
 ---

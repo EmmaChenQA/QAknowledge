@@ -7,6 +7,7 @@ topic: qa-foundations
 confidence: author-material
 updated: 2026-09-15
 sources: [BBST Foundations Lecture 5 §Complete Testing / Test Every Input / The Basic Combination Rule / It's Not Just Configuration Testing (CC BY-SA 4.0, Kaner/Bach, bbst.courses)]
+source_lang: en
 related: [qa/foundations/exhaustive-testing-impossible, qa/foundations/path-sequence-testing-blind-spots, qa/foundations/cumulative-state-defects]
 summary: 窮舉不可能時，測試靠有策略的抽樣（邊界值、all-pairs）補位，但抽樣本身仍有盲區，抓不到跨操作累積的狀態缺陷。
 ---

@@ -1,0 +1,43 @@
+{
+  "node": "rd/backend/rails/validation-errors-collection-and-api-format",
+  "questions": [
+    {
+      "type": "choice",
+      "q": "一個表單同時缺必填欄位又格式錯誤，validates 驗證後 errors collection 會是什麼狀態？",
+      "options": [
+        "可以同時累積多個欄位、多種類型的錯誤",
+        "只保留最後一個欄位的錯誤",
+        "格式錯誤會覆蓋必填錯誤",
+        "只會保留第一個偵測到的錯誤"
+      ],
+      "answer": 0
+    },
+    {
+      "type": "choice",
+      "q": "與特定欄位無關、屬於物件整體狀態的驗證錯誤，會被加到哪裡？",
+      "options": [
+        "不會被記錄，只會拋例外",
+        "errors[:general]",
+        "第一個定義的欄位",
+        "errors[:base]"
+      ],
+      "answer": 3
+    },
+    {
+      "type": "choice",
+      "q": "Rails 官方對『驗證錯誤如何序列化成 API JSON 回應』的規範是？",
+      "options": [
+        "沒有統一標準，格式取決於各專案自訂的序列化邏輯",
+        "官方強制規定必須用 full_messages 陣列",
+        "官方規定必須用 errors[:base] 包住所有錯誤",
+        "官方規定狀態碼一律回 200 並在 body 標記 success:false"
+      ],
+      "answer": 0
+    },
+    {
+      "type": "scenario",
+      "q": "測試一個註冊 API，故意同時送出空白姓名、格式錯誤的 email、超長密碼三個問題，結果回應 body 只有一句 { \"error\": \"Name can't be blank\" }。身為 QA 該如何判斷這是否為缺陷、怎麼設計 TC？",
+      "answer": "判斷 API 實作很可能只取了 errors.full_messages.first 或類似寫法，把其餘兩個錯誤（email 格式、密碼過長）靜默丟棄；這會導致前端使用者填完姓名重送後才發現下一個錯誤，體驗差且測試容易漏掉其他錯誤真的有被驗證到；TC 應固定用『多欄位同時觸發多種錯誤』的資料組合驗證回應是否列出全部錯誤，而不是只送單一錯誤逐一測試；跨端點抽測序列化格式是否一致（陣列 vs 物件、是否含 type）。"
+    }
+  ]
+}

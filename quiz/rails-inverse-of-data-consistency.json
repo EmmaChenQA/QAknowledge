@@ -1,0 +1,43 @@
+{
+  "node": "rd/backend/rails/inverse-of-data-consistency",
+  "questions": [
+    {
+      "type": "choice",
+      "q": "belongs_to :writer, class_name: \"Author\", foreign_key: \"author_id\" 這種自訂寫法，Rails 是否能自動辨識雙向關聯？",
+      "options": [
+        "能，只要兩邊關聯名稱對稱即可自動識別",
+        "不能，自訂 foreign_key 的關聯永遠不支援雙向識別",
+        "能，Rails 一律能自動辨識所有關聯的反向",
+        "不一定，自訂 :foreign_key／:class_name 等選項可能讓自動識別失效，需手動加 :inverse_of"
+      ],
+      "answer": 3
+    },
+    {
+      "type": "choice",
+      "q": "雙向關聯自動識別失效時，author.books.first.writer 拿到的物件跟原本的 author 物件是什麼關係？",
+      "options": [
+        "author.books.first.writer 會自動回傳 nil",
+        "Rails 會拋出錯誤禁止這種存取方式",
+        "是兩個獨立的記憶體實例，修改其中一個屬性另一個不會跟著變",
+        "是同一個記憶體實例，兩者資料永遠同步"
+      ],
+      "answer": 2
+    },
+    {
+      "type": "choice",
+      "q": "透過 author.books.new 建立子物件並呼叫 book.save!，若父子關聯沒被正確辨識為雙向，會發生什麼？",
+      "options": [
+        "Rails 會拋出雙向關聯未宣告的例外",
+        "子物件與父物件都會存檔失敗",
+        "父物件也會自動一併存檔",
+        "子物件存檔成功，但父物件不會被自動一併存檔（autosave 失效）"
+      ],
+      "answer": 3
+    },
+    {
+      "type": "scenario",
+      "q": "QA 測「新增作者時同時新增第一本書」的巢狀建立流程，多次測試發現結果不穩定：有時作者與書都存進資料庫，有時只有書存進去、作者卻沒有，且畫面也沒有任何錯誤訊息。該怎麼往下排查？",
+      "answer": "1) 先確認該關聯是否使用了自訂 :foreign_key 或 :class_name 等選項，這類設定容易讓 Rails 無法自動辨識雙向關聯；2) 若確認缺少雙向識別，補測：檢查 book.save! 後父物件 author.persisted? 是否為 false，驗證是否為 autosave 失效；3) 同時檢查 presence 驗證（如「作者必須存在」）在這個情境下是否也出現不穩定的通過/失敗，因為雙向識別失效會連帶影響驗證判斷；4) 定位根因後，建議 RD 在關聯宣告加上 :inverse_of 明確宣告雙向關係，並在修復後用同樣的巢狀建立情境重測確認穩定通過。"
+    }
+  ]
+}

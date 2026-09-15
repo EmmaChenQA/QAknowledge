@@ -7,6 +7,7 @@ topic: qa-test-design
 confidence: author-material
 updated: 2026-09-15
 sources: [BBST Test Design Lecture 6 "Multivariable Testing" p.446-449, 475-485（CC BY-SA 4.0, Kaner/Fiedler, bbst.courses）]
+source_lang: en
 related: [qa/test-design/combination-testing-coverage-criteria, qa/test-design/combination-testing-variable-independence]
 summary: 除覆蓋層級外，組合測試還有窮舉vs等價、正常vs強健、弱vs強三組獨立軸線，實務上多半只對單一變數做強健測試
 ---

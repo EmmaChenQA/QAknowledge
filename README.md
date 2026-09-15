@@ -5,6 +5,7 @@
 ## 使用
 - 建站：`node scripts/build.js`（產 `kb/INDEX.md` + `site/index.html`）
 - 閱讀＋答題：`node scripts/serve.js` → http://localhost:4173（答題自動寫回 `progress.json`）
+- 測試／除錯時**不要碰正式紀錄**：`PORT=4174 QK_PROGRESS=/tmp/qk-test-progress.json node scripts/serve.js`，讀寫都走指定的另一份檔案（2026-09-15 事故後新增：AI 驗證一律走此模式，禁止對 `progress.json` 執行刪除）
 - 直接開 `site/index.html` 也可，但答題只存瀏覽器 localStorage，需手動「匯出」覆蓋 `progress.json`
 
 ## 主題
@@ -17,6 +18,7 @@
 - **粒度**：一個可獨立測試的概念，100–600 字，超過就拆
 - **邊界**：`kb/` 只放跨專案成立的內容（原理、通用測法、常見缺陷）；專案細節只能在「專案對應」段以「日期 + 指向」形式存在，不寫本體
 - **信心**：`confidence: book`（書本全文）`| author-material`（作者本人公開發表資料，如 CC-BY 課程投影片/cheat sheet，非該書全文）`| verified`（實測過）`| inferred`（推論）；「專案對應」每條必帶日期，過期即刪或更新
+- **來源語言**：`source_lang: en` 表示正文由英文原文改寫翻譯而成；來源本來就是中文（如 DDIA 繁中譯本、簡體中文原文）則不寫此欄，預設視為中文來源
 - **aliases**：同義詞、口語、英文全列，AI 靠 INDEX.md 比對這欄找節點
 - **出處**：`sources/` 的原書 PDF 不進 git，頁碼出處僅供本機回查
 

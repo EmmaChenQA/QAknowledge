@@ -14,17 +14,23 @@
 | BBST Bug Advocacy（Cem Kaner） | CC BY-SA 4.0 | 10 | `qa-bug-advocacy` 缺陷主張與回報 |
 | BBST Exploratory Testing（Cem Kaner）＋《Exploratory Testing Explained》（James Bach） | CC BY-SA | 15 | `qa-exploratory` 探索式測試（併同下列速查表）|
 | Test Heuristics Cheat Sheet（Elisabeth Hendrickson 等） | 版權所有，作者公開免費提供下載 | 7 | `qa-exploratory` |
+| A Context-Driven Approach to Automation in Testing（James Bach & Michael Bolton，2016） | 一般版權所有，作者免費公開，非 CC——節點內容**完全改寫不引原句** | 8 | `qa-automation` 自動化與工具化測試（新增主題）|
+| Ruby on Rails Guides：Testing／Active Record Validations／Associations／Routing（官方文件） | CC BY-SA 4.0 | 27 | `rails` Rails 框架基礎（新增主題，`kb/rd/backend/rails/`）|
 
-**知識庫最終統計**：153 個節點、638 題考題。
+**知識庫最終統計**：188 個節點、778 題考題。
 
 | 領域 | 節點數 |
 |---|---|
-| RD 知識（`kb/rd/backend`） | 78 |
+| RD 知識（`kb/rd/backend`，含 DDIA／REST API） | 78 |
+| RD 知識（`kb/rd/backend/rails`，Rails Guides） | 27 |
 | RD 知識（`kb/rd/frontend`，Vue） | 4 |
 | QA 技巧（`kb/qa/foundations`） | 11 |
 | QA 技巧（`kb/qa/test-design`） | 28 |
 | QA 技巧（`kb/qa/bug-advocacy`） | 10 |
 | QA 技巧（`kb/qa/exploratory`） | 22 |
+| QA 技巧（`kb/qa/automation`） | 8 |
+
+**Rails 缺口說明**：原始書單建議的《Agile Web Development with Rails》未拆——使用者提供的電子書來源（dokumen.pub）判定為盜版商業書，拒絕使用；使用者提供的 `rubys/awdwr` repo 經查證為書籍配套的測試自動化工具（Ruby 程式碼，無書籍正文），也不可用。改用官方 Rails Guides（CC BY-SA 4.0）覆蓋核心框架知識，未涵蓋原書的教學式全站導覽（scaffold 流程、視圖層細節等），屬合理替代但非等價內容。
 
 下方書單仍保留：`author-material` 只是替代來源，若之後取得書籍正文（掃描或購買電子書），仍可依原計畫拆書並與現有節點合併，不必重建。
 

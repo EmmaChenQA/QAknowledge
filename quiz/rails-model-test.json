@@ -1,0 +1,43 @@
+{
+  "node": "rd/backend/rails/model-test",
+  "questions": [
+    {
+      "type": "choice",
+      "q": "Rails model test 預設繼承自哪個測試類別？",
+      "options": [
+        "ActionDispatch::IntegrationTest",
+        "ActionMailer::TestCase",
+        "ActionDispatch::SystemTestCase",
+        "ActiveSupport::TestCase"
+      ],
+      "answer": 3
+    },
+    {
+      "type": "choice",
+      "q": "下列哪一項最適合用 model test 來驗證？",
+      "options": [
+        "某支 API 端點回傳的 HTTP 狀態碼是否正確",
+        "使用者點擊某按鈕後，頁面是否正確跳轉",
+        "某欄位的驗證規則（如必填、唯一性）是否生效",
+        "瀏覽器渲染後某元素的 CSS 樣式是否正確"
+      ],
+      "answer": 2
+    },
+    {
+      "type": "choice",
+      "q": "「後端 model 的驗證規則已經在 model test 測過了，前端表單的驗證邏輯就不用再另外測」這個說法對嗎？",
+      "options": [
+        "對，後端測過就代表整條鏈路都沒問題",
+        "錯，前後端驗證規則可能不一致，兩層都要分別驗證是否吻合",
+        "對，只要 API 文件寫清楚驗證規則即可，不用重複測",
+        "錯，因為 model test 其實也會實際發出 HTTP 請求"
+      ],
+      "answer": 1
+    },
+    {
+      "type": "scenario",
+      "q": "某個 model 的關聯設定從 `dependent: :destroy` 被改成 `dependent: :nullify`，QA 該怎麼設計 model test 驗證這個改動有沒有造成非預期影響？",
+      "answer": "1) 準備一筆父物件與其關聯的子物件（可用 fixture 或測試內自建）；2) 刪除父物件，斷言子物件的行為是否符合新設定——應該是外鍵被清空而保留，而非被連帶刪除；3) 檢查是否有其他依賴該關聯資料完整性的邏輯（如統計筆數、報表查詢）會因為孤兒資料而算錯或出錯；4) 若該關聯原本被其他業務規則假設「刪父必刪子」，需額外確認這個假設有沒有隨改動同步更新，避免出現資料不一致。"
+    }
+  ]
+}

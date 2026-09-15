@@ -7,6 +7,7 @@ topic: qa-test-design
 confidence: author-material
 updated: 2026-09-15
 sources: [BBST Test Design Lecture 2 §Common Ideas for Quicktests, CC BY-SA 4.0, Kaner/Fiedler, bbst.courses]
+source_lang: en
 related: [qa/test-design/quicktest-theory-of-error]
 summary: 干擾測試（中斷/取消/搶佔）與殘留值測試（上游改了下游沒重算）是兩類特別具體、常抓到缺陷的速測技法
 ---

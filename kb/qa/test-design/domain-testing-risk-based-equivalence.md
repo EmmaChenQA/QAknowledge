@@ -7,6 +7,7 @@ topic: qa-test-design
 confidence: author-material
 updated: 2026-09-15
 sources: [BBST Test Design Lecture 5 "Domain Testing" p.402-416（CC BY-SA 4.0, Kaner/Fiedler, bbst.courses）]
+source_lang: en
 related: [qa/test-design/domain-testing-primary-secondary-dimensions, qa/test-design/domain-testing-result-variables, qa/test-design/domain-testing-hidden-boundary, rd/backend/fault-injection-chaos-engineering]
 summary: 等價與否取決於針對哪個風險判斷，非固定不變，最佳代表值是最有機會觸發該風險的成員
 ---

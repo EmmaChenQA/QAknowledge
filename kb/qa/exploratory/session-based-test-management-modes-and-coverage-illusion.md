@@ -7,6 +7,7 @@ topic: qa-exploratory
 confidence: author-material
 updated: 2026-09-15
 sources: [Bach "Exploratory Testing Explained" v1.3 §Practicing Exploratory Testing, §Managing Exploratory Testing pp.4-7 (2002-2003), Kaner "Exploratory Testing" BBST Fall 2006 lecture slides 96-108 (CC BY-SA 2.0)]
+source_lang: en
 related: [qa/exploratory/exploratory-testing-coverage-and-session-tracking]
 summary: SBTM 用 session 結束產物與委派／參與兩種管理模式，堵住沒有紀律的探索式測試最容易失分的覆蓋錯覺——不自覺重複測試或漏測整塊區域。
 ---

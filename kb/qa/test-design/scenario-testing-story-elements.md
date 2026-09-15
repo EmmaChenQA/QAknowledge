@@ -7,6 +7,7 @@ topic: qa-test-design
 confidence: author-material
 updated: 2026-09-15
 sources: [BBST Test Design Lecture 4 "Scenario Testing" p.293-295, 319-325（CC BY-SA 4.0, Kaner/Fiedler, bbst.courses）]
+source_lang: en
 related: [qa/test-design/scenario-testing-lines-of-inquiry, qa/test-design/test-technique-quality-attributes]
 summary: 情境測試須具備連貫故事、可信、有說服力、夠複雜、易判讀五要素
 ---

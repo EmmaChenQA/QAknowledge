@@ -1,0 +1,43 @@
+{
+  "node": "rd/backend/rails/controller-functional-test",
+  "questions": [
+    {
+      "type": "choice",
+      "q": "現行 Rails 的 controller（functional）test 實際上是繼承哪個基底類別？",
+      "options": [
+        "ActionDispatch::IntegrationTest",
+        "ActiveSupport::TestCase",
+        "ActionController::TestCase",
+        "Capybara::DSL"
+      ],
+      "answer": 0
+    },
+    {
+      "type": "choice",
+      "q": "下列何者是 controller functional test 通常會驗證的項目？",
+      "options": [
+        "資料庫 migration 是否成功執行",
+        "瀏覽器渲染出的實際像素位置與樣式",
+        "請求是否成功、是否正確跳轉、回應內容是否正確",
+        "資料庫索引的查詢效能"
+      ],
+      "answer": 2
+    },
+    {
+      "type": "choice",
+      "q": "「controller test 只要 assert_response :success 過了，就代表這支 API 已經測得夠完整」這個說法對嗎？",
+      "options": [
+        "錯，還需要驗證回應內容/資料是否正確，狀態碼正常不代表邏輯正確",
+        "對，200 就代表功能邏輯完全正常",
+        "對，只要不是 5xx 都算測完整",
+        "錯，狀態碼類斷言一定要改用人工瀏覽器複測才算數"
+      ],
+      "answer": 0
+    },
+    {
+      "type": "scenario",
+      "q": "某個 controller action 新增了一個權限檢查（僅限管理員可呼叫），QA 要幫忙補上 controller test，至少應該涵蓋哪些案例？",
+      "answer": "1) 以管理員身分呼叫時應成功，且回應內容/資料正確；2) 以一般（非管理員）身分呼叫時應被擋下，且回傳合理的狀態碼與錯誤訊息，而非直接 500 或洩漏內部資訊；3) 未登入狀態呼叫該 action 的情境也要涵蓋；4) 檢查該資源相關的其他 action（特別是新增/修改/刪除等破壞性操作）是否都補齊了同樣的權限檢查，而不是只補了本票明文提到的那一支 action。"
+    }
+  ]
+}

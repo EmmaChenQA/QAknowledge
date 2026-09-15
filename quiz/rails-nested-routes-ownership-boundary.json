@@ -1,0 +1,43 @@
+{
+  "node": "rd/backend/rails/nested-routes-ownership-boundary",
+  "questions": [
+    {
+      "type": "choice",
+      "q": "`resources :magazines do resources :ads end` 加上 `shallow: true` 後，show 動作的路徑會變成什麼？",
+      "options": [
+        "/ads/:id，不再帶父層 magazine_id",
+        "/magazines/:id，改成只認父層 id",
+        "路由會被完全移除，show 不再存在",
+        "仍是 /magazines/:magazine_id/ads/:id，不受 shallow 影響"
+      ],
+      "answer": 0
+    },
+    {
+      "type": "choice",
+      "q": "為什麼「URL 帶父層 id」不能當作擁有權已被檢查的證據？",
+      "options": [
+        "因為父層 id 一定是加密過的亂碼",
+        "因為 URL 一定會被瀏覽器快取，內容不可信",
+        "因為 controller 完全可能只用子資源 id 查詢、從不核對父層 id 是否相符",
+        "因為 Rails 會自動幫每個巢狀路由做擁有權檢查，不需要另外確認"
+      ],
+      "answer": 2
+    },
+    {
+      "type": "choice",
+      "q": "某資源 shallow 化後路由變短，QA 因此少測了一項。這個判斷錯誤最可能是？",
+      "options": [
+        "誤以為路由變短代表效能變好，不需要再測",
+        "誤以為 shallow 只影響樣式，不影響任何邏輯",
+        "誤以為路由變短代表功能變簡單，順帶漏測了擁有權檢查",
+        "誤以為 shallow 化後該資源不再需要登入"
+      ],
+      "answer": 2
+    },
+    {
+      "type": "scenario",
+      "q": "票面要新增 `/magazines/:magazine_id/ads` 巢狀端點（未 shallow），只要求測「新增廣告後能在列表看到」。QA 該如何補上越權測試設計？",
+      "answer": "1) 用 A 使用者建立 magazine 與 ad，取得 magazine_id 與 ad id；2) 用 B 使用者的帳號，把自己的 magazine_id 換成 A 的 magazine_id 呼叫 show/update/destroy，驗證是否被擋（403/404）；3) 反過來用 A 的 magazine_id 配上不屬於它、但屬於另一個 magazine 的 ad id，確認 controller 有核對「這個 ad 真的屬於這個 magazine」而不只是查到 ad 就放行；4) 若巢狀超過一層，對每一層 id 都重複上述交叉測試。"
+    }
+  ]
+}

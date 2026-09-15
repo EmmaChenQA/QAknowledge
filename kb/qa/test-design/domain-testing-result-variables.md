@@ -7,6 +7,7 @@ topic: qa-test-design
 confidence: author-material
 updated: 2026-09-15
 sources: [BBST Test Design Lecture 5 "Domain Testing" p.416-427（CC BY-SA 4.0, Kaner/Fiedler, bbst.courses）]
+source_lang: en
 related: [qa/test-design/domain-testing-risk-based-equivalence]
 summary: 邊界值分析不只測輸入欄位，也要測計算出的結果變數
 ---

@@ -1,0 +1,43 @@
+{
+  "node": "rd/backend/rails/system-test",
+  "questions": [
+    {
+      "type": "choice",
+      "q": "Rails system test 底層是用什麼工具驅動真實或無頭瀏覽器？",
+      "options": [
+        "RSpec",
+        "Capybara",
+        "Webmock",
+        "Cucumber"
+      ],
+      "answer": 1
+    },
+    {
+      "type": "choice",
+      "q": "官方指南建議 system test 應該主要用在哪些情境？",
+      "options": [
+        "每一個新功能都應該補上一支 system test",
+        "核心業務流程、跨元件複雜互動、其他測試層級測不到的 JS 邏輯",
+        "只用來檢查錯誤訊息的文案是否正確",
+        "取代所有 model test，因為它涵蓋範圍最廣"
+      ],
+      "answer": 1
+    },
+    {
+      "type": "choice",
+      "q": "「system test 因為最真實、涵蓋範圍最廣，所以可以取代 integration test 和 model test」這個說法對嗎？",
+      "options": [
+        "對，涵蓋範圍最大，用它就夠了不需要其他層級",
+        "對，只是速度比較慢而已，其他方面沒有差別",
+        "錯，system test 慢且容易因時序/UI 變動不穩定，應保留給核心流程，其餘層級測試仍各司其職",
+        "錯，因為 system test 其實無法測試 JavaScript 互動"
+      ],
+      "answer": 2
+    },
+    {
+      "type": "scenario",
+      "q": "一支 system test 在 CI 上時常隨機失敗，但在本機重跑卻正常通過。QA 該如何判斷這是真的功能缺陷，還是測試本身不穩定？",
+      "answer": "1) 先檢查斷言等待方式是否用了固定 sleep 秒數，而非等元素真正出現或具備重試機制；2) 用失敗時的自動截圖（take_failed_screenshot）查看失敗當下畫面，比對是否卡在載入中或元素根本沒渲染出來；3) 評估是否為 CI 環境效能較差、時序比本機慢所導致的競態問題，而非邏輯本身壞掉；4) 若確認是環境時序造成的不穩定，應優先改善等待策略（如改用條件式等待），而不是直接把它判定為功能缺陷。"
+    }
+  ]
+}

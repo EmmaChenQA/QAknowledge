@@ -7,6 +7,7 @@ topic: qa-foundations
 confidence: author-material
 updated: 2026-09-15
 sources: [BBST Foundations Lecture 3 §Once Upon a Time / Oracle / The Need for Judgement / Fallible Decision Rules (CC BY-SA 4.0, Kaner/Bach, bbst.courses)]
+source_lang: en
 related: [qa/foundations/oracle-heuristics-types]
 summary: 傳統「oracle 是判斷通過或失敗的機制」定義行不通，判斷對錯本質上需要人的判斷且會出錯。
 ---

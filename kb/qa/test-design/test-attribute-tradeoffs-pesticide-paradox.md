@@ -7,6 +7,7 @@ topic: qa-test-design
 confidence: author-material
 updated: 2026-09-15
 sources: [BBST Test Design Lecture 4 "Scenario Testing" p.330-350（CC BY-SA 4.0, Kaner/Fiedler, bbst.courses）]
+source_lang: en
 related: [qa/test-design/test-technique-quality-attributes]
 summary: 測試品質屬性彼此經常互相取捨，資訊價值在重複執行的回歸測試中會遞減，稱為殺蟲劑悖論
 ---

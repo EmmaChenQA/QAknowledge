@@ -7,6 +7,7 @@ topic: qa-test-design
 confidence: author-material
 updated: 2026-09-15
 sources: [BBST Test Design Lecture 2 §Project-Level Risk Analysis / Project Risk Heuristics: Where to Look for Errors, CC BY-SA 4.0, Kaner/Fiedler, bbst.courses]
+source_lang: en
 related: [qa/test-design/project-risk-heuristics, qa/test-design/failure-mode-catalog-fmea]
 summary: 失效不會被立刻發現的隱性風險最容易被低估，因為沒有立即回饋迴路，必須主動設計偵測手段
 ---

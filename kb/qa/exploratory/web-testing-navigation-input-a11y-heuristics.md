@@ -7,6 +7,7 @@ topic: qa-exploratory
 confidence: author-material
 updated: 2026-09-15
 sources: [Test Heuristics Cheat Sheet p2-3（CC BY-SA 4.0，Elisabeth Hendrickson／James Lyndsay／Dale Emery，另含 Ady Stokes 無障礙補充，Ministry of Testing）]
+source_lang: en
 related: [rd/backend/untrusted-input-validation-boundary, qa/exploratory/web-accessibility-testing-heuristics]
 summary: 瀏覽器導航、輸入注入與偏好設定檢查，功能測試常漏掉但使用者一定會踩到的情境。
 ---

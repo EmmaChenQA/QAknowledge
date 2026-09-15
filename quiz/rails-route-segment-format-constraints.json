@@ -1,0 +1,43 @@
+{
+  "node": "rd/backend/rails/route-segment-format-constraints",
+  "questions": [
+    {
+      "type": "choice",
+      "q": "路由約束 `constraints: { id: /^\\d/ }` 這樣寫會發生什麼問題？",
+      "options": [
+        "因為 Rails 路由本身已在頭尾錨定，加 ^ 會讓約束直接失效但不報錯，本該擋的格式全部放行",
+        "會讓應用程式啟動時直接報錯",
+        "只是效能變差，功能不受影響",
+        "完全正常運作，跟不加錨點效果一樣"
+      ],
+      "answer": 0
+    },
+    {
+      "type": "choice",
+      "q": "動態片段 `:id` 預設情況下，遇到含點號（如 \"1.5\"）的值會怎麼處理？",
+      "options": [
+        "整段直接當成 id 使用，點號不受影響",
+        "點號一律觸發 500 錯誤",
+        "點號會被自動轉成底線",
+        "點號預設不被接受，因為它被當成格式分隔符，除非另加約束覆蓋"
+      ],
+      "answer": 3
+    },
+    {
+      "type": "choice",
+      "q": "為什麼「format 是隱性可選參數」是個容易漏測的邊界？",
+      "options": [
+        "因為 format 只影響 CSS 樣式，不影響測試",
+        "因為 format 只在測試環境生效，正式環境不存在",
+        "因為即使 API 只設計給 .json 用，未設 format: false 時 .xml 或無後綴也可能被默默接受，回應格式跟預期不同",
+        "因為 format 一定會讓路由 404，不需要測"
+      ],
+      "answer": 2
+    },
+    {
+      "type": "scenario",
+      "q": "一個端點用 `resources :photos, constraints: { id: /[A-Z][A-Z][0-9]+/ }` 限制 id 格式。QA 該怎麼設計邊界測試？",
+      "answer": "1) 打規則內合法值（如 AB123）確認正常進入 show action；2) 打規則外的值（如純數字 123 或小寫 ab123），預期是路由層 404（連 action 都沒進去），若進了 action 才回錯誤碼則代表約束沒生效；3) 額外測 id 含點號的情況（如 AB123.5），確認是否被誤解析成 id+format 兩段；4) 若同網域另有一條路由用不同 id 特徵區分到別的 controller，額外測邊界值（如格式介於兩者之間的字串）是否被分類到非預期的 controller。"
+    }
+  ]
+}

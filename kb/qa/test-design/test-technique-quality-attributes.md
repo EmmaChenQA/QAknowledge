@@ -7,6 +7,7 @@ topic: qa-test-design
 confidence: author-material
 updated: 2026-09-15
 sources: [BBST Test Design Lecture 4 "Scenario Testing" p.330-350（CC BY-SA 4.0, Kaner/Fiedler, bbst.courses）]
+source_lang: en
 related: [qa/test-design/scenario-testing-story-elements, qa/test-design/test-attribute-tradeoffs-pesticide-paradox]
 summary: 用 power/validity/credibility 等一組屬性評估一個測試技法好壞，沒有單一屬性能定義「好測試」
 ---

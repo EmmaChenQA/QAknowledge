@@ -7,6 +7,7 @@ topic: qa-bug-advocacy
 confidence: author-material
 updated: 2026-09-15
 sources: [BBST Bug Advocacy Lecture 2 §Showing a Bug Is More General / Corner Cases, slides 59-62; Lecture 5 §The Unrealistic Failure / No Customer Impact, slides 144-146, 155 (CC BY-SA 4.0, Kaner/Fiedler, bbst.courses)]
+source_lang: en
 related: [qa/bug-advocacy/rimgen-followup-testing, qa/bug-advocacy/motivating-programmer-to-fix]
 summary: 面對「只在極端情況發生」或「沒有客戶影響」的打回票，有具體的反制與辯護做法。
 ---

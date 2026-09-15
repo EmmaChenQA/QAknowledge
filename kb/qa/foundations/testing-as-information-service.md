@@ -7,6 +7,7 @@ topic: qa-foundations
 confidence: author-material
 updated: 2026-09-15
 sources: [BBST Foundations Lecture 2 §Many Different Information Objectives / Your Testing Mission / Testing Strategy (CC BY-SA 4.0, Kaner/Bach, bbst.courses)]
+source_lang: en
 related: [qa/foundations/software-testing-definition]
 summary: 測試本質是資訊服務，不同資訊目標（任務）會導出完全不同的測試策略與產出物。
 ---

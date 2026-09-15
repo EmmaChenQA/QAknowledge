@@ -7,6 +7,7 @@ topic: qa-test-design
 confidence: author-material
 updated: 2026-09-15
 sources: [BBST Test Design Lecture 2 §Failure Mode & Effects Analysis, CC BY-SA 4.0, Kaner/Fiedler, bbst.courses]
+source_lang: en
 related: [qa/test-design/failure-mode-catalog-fmea, qa/test-design/project-risk-heuristics]
 summary: FMEA 針對每個元件逐一評估失效的影響對象、嚴重度與修復/找出成本，決定值不值得花力氣去追
 ---

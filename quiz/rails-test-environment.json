@@ -1,0 +1,43 @@
+{
+  "node": "rd/backend/rails/test-environment",
+  "questions": [
+    {
+      "type": "choice",
+      "q": "執行 `bin/rails test` 時，Rails 自動把 RAILS_ENV 設為哪個環境？",
+      "options": [
+        "development",
+        "production",
+        "test",
+        "staging"
+      ],
+      "answer": 2
+    },
+    {
+      "type": "choice",
+      "q": "測試開跑前，若發現資料庫有尚未執行的 migration，Rails 的 test helper 會怎麼做？",
+      "options": [
+        "直接報錯中止，不會用舊 schema 繼續跑",
+        "自動幫你跑完 migration 再繼續",
+        "忽略警告並用舊 schema 跑完整套測試",
+        "只跳過受影響的那支測試檔案"
+      ],
+      "answer": 0
+    },
+    {
+      "type": "choice",
+      "q": "「測試資料庫其實跟 development 資料庫是同一顆，只是切換 schema 版本」這個說法對嗎？",
+      "options": [
+        "對，因為兩者共用同一個資料庫伺服器連線設定",
+        "錯，test/development/production 各自有獨立的資料庫設定，資料互不影響",
+        "對，Rails 會在執行時動態切換 schema 版本",
+        "錯，但只有正式上線後才會分離，開發階段仍共用"
+      ],
+      "answer": 1
+    },
+    {
+      "type": "scenario",
+      "q": "QA 發現 CI 上某次回歸測試「不管改什麼都測出舊版行為」，懷疑是環境設定問題，該怎麼排查？",
+      "answer": "1) 確認 CI 執行時 RAILS_ENV 確實是 test，而非誤跑到 development/production 設定；2) 檢查測試用的資料庫連線字串是否誤指向 dev/prod 而非獨立 test DB；3) 確認 schema 是否真的同步——理論上有未跑的 migration 應該直接報錯中止而非默默跑舊 schema，若測試正常跑完卻是舊行為，要懷疑 CI 快取了舊版 schema.rb/structure.sql 繞過了檢查；4) 必要時手動跑 `bin/rails test:db` 重建測試庫再重測一次比對。"
+    }
+  ]
+}
