@@ -1,0 +1,43 @@
+{
+  "node": "rd/backend/api-error-format",
+  "questions": [
+    {
+      "type": "choice",
+      "q": "以下哪種錯誤回應設計是本節點認為不可取的做法？",
+      "options": [
+        "200 狀態碼 + body 含 status:failure",
+        "400 狀態碼 + body 含 error 欄位",
+        "404 狀態碼 + body 含 detail 欄位",
+        "422 狀態碼 + body 描述哪個欄位不合法"
+      ],
+      "answer": 0
+    },
+    {
+      "type": "choice",
+      "q": "QA 判斷一支 API 呼叫是否失敗，最可靠的依據組合是？",
+      "options": [
+        "只看 HTTP 狀態碼",
+        "只看 body 是否有 error 字樣",
+        "狀態碼與 body 內容一併核對是否一致",
+        "只看回應時間是否過長"
+      ],
+      "answer": 2
+    },
+    {
+      "type": "choice",
+      "q": "錯誤 body 中出現資料庫堆疊或內部服務名稱屬於什麼類型的問題？",
+      "options": [
+        "資安候選，資訊洩漏",
+        "格式問題，重寫成JSON即可",
+        "效能問題",
+        "版本控制問題"
+      ],
+      "answer": 0
+    },
+    {
+      "type": "scenario",
+      "q": "自動化回歸腳本對一批負向案例全部斷言 status===200 即判 Pass，近期漏掉了一個「200 但 body.success=false」的真實 bug。如何重新設計判定邏輯與新增TC？",
+      "answer": "1) 改斷言邏輯：不能只驗狀態碼，需同時解析body並檢查是否含失敗欄位；2) 針對每個負向案例明列預期狀態碼＋預期body結構，而非只填「200」；3) 新增TC專門驗證「狀態碼與body語意是否一致」，即200時body不得宣告failure；4) 對此類TC標記為Q-品質TC並記錄根因（斷言不足非功能本身問題）。"
+    }
+  ]
+}

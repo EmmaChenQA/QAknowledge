@@ -1,0 +1,259 @@
+[
+  {
+    "key": "tx",
+    "name": "交易與隔離級別",
+    "desc": "支付／出金測試的核心：ACID、隔離級別異常、鎖與冪等",
+    "order": [
+      "rd/backend/transaction-acid",
+      "rd/backend/isolation-read-committed",
+      "rd/backend/isolation-snapshot",
+      "rd/backend/lost-update",
+      "rd/backend/optimistic-vs-pessimistic-locking",
+      "rd/backend/write-skew",
+      "rd/backend/write-skew-mitigation-patterns",
+      "rd/backend/serializable-isolation",
+      "rd/backend/two-phase-locking-vs-ssi",
+      "rd/backend/idempotency"
+    ],
+    "domain": "backend"
+  },
+  {
+    "key": "rep",
+    "name": "複製與一致性",
+    "desc": "主從延遲、讀己之寫、故障切換、CAP 的實際含義",
+    "order": [
+      "rd/backend/sync-vs-async-replication-tradeoffs",
+      "rd/backend/replication-consistency-anomalies",
+      "rd/backend/leader-failover-split-brain",
+      "rd/backend/multi-leader-write-conflict-resolution",
+      "rd/backend/quorum-read-write-leaderless",
+      "rd/backend/concurrent-writes-version-vectors",
+      "rd/backend/linearizability",
+      "rd/backend/linearizability-use-cases",
+      "rd/backend/cap-theorem-misuse",
+      "rd/backend/pacelc-latency-consistency-tradeoff"
+    ],
+    "domain": "backend"
+  },
+  {
+    "key": "dist",
+    "name": "分散式系統的麻煩",
+    "desc": "網路、時鐘、暫停、共識：QA 怎麼製造與觀察這些狀況",
+    "order": [
+      "rd/backend/unreliable-network-timeout",
+      "rd/backend/clock-skew-and-drift",
+      "rd/backend/process-pause-gc-stw",
+      "rd/backend/fencing-token",
+      "rd/backend/majority-quorum-and-byzantine",
+      "rd/backend/untrusted-input-validation-boundary",
+      "rd/backend/logical-clock-ordering",
+      "rd/backend/distributed-id-generation",
+      "rd/backend/consensus-algorithms",
+      "rd/backend/coordination-service-misuse",
+      "rd/backend/two-phase-commit",
+      "rd/backend/fault-injection-chaos-engineering"
+    ],
+    "domain": "backend"
+  },
+  {
+    "key": "api",
+    "name": "API 契約與相容",
+    "desc": "HTTP 語意、狀態碼、錯誤格式、版本與 schema 演進",
+    "order": [
+      "rd/backend/api-http-methods",
+      "rd/backend/api-status-codes",
+      "rd/backend/api-error-format",
+      "rd/backend/api-pagination-filtering-sorting",
+      "rd/backend/api-versioning",
+      "rd/backend/api-auth-error-401-403",
+      "rd/backend/schema-forward-backward-compatibility",
+      "rd/backend/protobuf-avro-schema-evolution",
+      "rd/backend/json-numeric-precision-pitfalls",
+      "rd/backend/database-rolling-upgrade-dataflow"
+    ],
+    "domain": "backend"
+  },
+  {
+    "key": "stream",
+    "name": "批次、串流與訊息",
+    "desc": "至少一次 vs 恰好一次、重送順序、CDC、排程延遲",
+    "order": [
+      "rd/backend/message-delivery-semantics",
+      "rd/backend/message-queue-redelivery-ordering",
+      "rd/backend/event-time-vs-processing-time",
+      "rd/backend/change-data-capture",
+      "rd/backend/dual-write-problem-outbox-pattern",
+      "rd/backend/log-based-replay",
+      "rd/backend/log-compaction",
+      "rd/backend/batch-output-atomicity",
+      "rd/backend/batch-scheduling-delay",
+      "rd/backend/batch-preemption-retry"
+    ],
+    "domain": "backend"
+  },
+  {
+    "key": "model",
+    "name": "資料模型與儲存",
+    "desc": "關聯／文件／圖、索引成本、OLTP vs OLAP、分片",
+    "order": [
+      "rd/backend/relational-vs-document-model",
+      "rd/backend/normalization-denormalization-tradeoff",
+      "rd/backend/graph-data-model-and-query",
+      "rd/backend/schema-on-read-vs-write",
+      "rd/backend/event-sourcing-cqrs",
+      "rd/backend/lsm-tree-vs-btree-storage",
+      "rd/backend/index-write-cost-tradeoff",
+      "rd/backend/oltp-vs-olap-workload",
+      "rd/backend/star-schema-analytics",
+      "rd/backend/materialized-view-staleness",
+      "rd/backend/approximate-vector-search-index",
+      "rd/backend/sharding-hotspot",
+      "rd/backend/sharding-secondary-index",
+      "rd/backend/sharding-rebalancing"
+    ],
+    "domain": "backend"
+  },
+  {
+    "key": "perf",
+    "name": "效能、可靠性與 SLO",
+    "desc": "延遲百分位、排隊、重試風暴、衍生資料時效",
+    "order": [
+      "rd/backend/response-time-percentiles",
+      "rd/backend/queueing-delay-and-throughput",
+      "rd/backend/slo-sla-tail-latency-amplification",
+      "rd/backend/load-parameters-and-scalability",
+      "rd/backend/metastable-failure-retry-storm",
+      "rd/backend/system-of-record-vs-derived-data",
+      "rd/backend/etl-data-freshness-lag"
+    ],
+    "domain": "backend"
+  },
+  {
+    "key": "e2e",
+    "name": "端到端完整性",
+    "desc": "去重只有兩端算數、補償、稽核與校驗",
+    "order": [
+      "rd/backend/end-to-end-argument",
+      "rd/backend/timeliness-vs-integrity",
+      "rd/backend/uniqueness-requires-consensus",
+      "rd/backend/compensating-transaction",
+      "rd/backend/audit-and-verification"
+    ],
+    "domain": "backend"
+  },
+  {
+    "key": "vue",
+    "name": "前端響應式（Vue）",
+    "desc": "依賴追蹤、computed／watch 時機、過期副作用",
+    "order": [
+      "rd/frontend/reactive-dependency-tracking",
+      "rd/frontend/computed-lazy-caching",
+      "rd/frontend/watch-flush-timing",
+      "rd/frontend/watch-stale-effect-race"
+    ],
+    "domain": "frontend"
+  },
+  {
+    "key": "qa-foundations",
+    "name": "測試基礎與批判性思維",
+    "desc": "測試的定義、oracle 問題、覆蓋率的侷限，測試員該怎麼想而非怎麼做",
+    "order": [
+      "qa/foundations/software-testing-definition",
+      "qa/foundations/testing-as-information-service",
+      "qa/foundations/oracle-problem",
+      "qa/foundations/oracle-heuristics-types",
+      "qa/foundations/coverage-multidimensional",
+      "qa/foundations/exhaustive-testing-impossible",
+      "qa/foundations/sampling-strategy-design",
+      "qa/foundations/path-sequence-testing-blind-spots",
+      "qa/foundations/cumulative-state-defects",
+      "qa/foundations/metrics-distortion-surrogate-measures",
+      "qa/foundations/metrics-gaming-in-testing"
+    ],
+    "domain": "qa"
+  },
+  {
+    "key": "qa-test-design",
+    "name": "測試設計技法（QA 觀點）",
+    "desc": "風險導向、規格導向、情境、領域邊界、多變數測試技法的選用依據",
+    "order": [
+      "qa/test-design/test-technique-classification-dimensions",
+      "qa/test-design/test-technique-quality-attributes",
+      "qa/test-design/test-attribute-tradeoffs-pesticide-paradox",
+      "qa/test-design/touring-coverage-inventory",
+      "qa/test-design/domain-testing-equivalence-boundary",
+      "qa/test-design/domain-testing-best-representative-scope",
+      "qa/test-design/domain-testing-primary-secondary-dimensions",
+      "qa/test-design/domain-testing-hidden-boundary",
+      "qa/test-design/domain-testing-risk-based-equivalence",
+      "qa/test-design/domain-testing-result-variables",
+      "qa/test-design/domain-testing-non-ordered-variables",
+      "qa/test-design/domain-testing-non-ordered-no-representative",
+      "qa/test-design/scenario-testing-story-elements",
+      "qa/test-design/scenario-testing-lines-of-inquiry",
+      "qa/test-design/scenario-testing-object-event-benefit-lines",
+      "qa/test-design/risk-based-testing-fundamentals",
+      "qa/test-design/invisible-vs-visible-risk",
+      "qa/test-design/project-risk-heuristics",
+      "qa/test-design/quicktest-theory-of-error",
+      "qa/test-design/quicktest-interference-stale-value",
+      "qa/test-design/htsm-guidewords",
+      "qa/test-design/htsm-guideword-application",
+      "qa/test-design/failure-mode-catalog-fmea",
+      "qa/test-design/fmea-effects-analysis",
+      "qa/test-design/combination-testing-coverage-criteria",
+      "qa/test-design/combination-testing-coverage-axes",
+      "qa/test-design/combination-testing-variable-independence",
+      "qa/test-design/combination-testing-breaking-constraints"
+    ],
+    "domain": "qa"
+  },
+  {
+    "key": "qa-bug-advocacy",
+    "name": "缺陷主張與回報",
+    "desc": "怎麼讓 RD 願意修、怎麼寫讓人無法反駁的缺陷報告、如何應對「無法重現」",
+    "order": [
+      "qa/bug-advocacy/bug-report-as-persuasion",
+      "qa/bug-advocacy/failure-when-bug-summary",
+      "qa/bug-advocacy/bug-report-essential-fields",
+      "qa/bug-advocacy/rimgen-followup-testing",
+      "qa/bug-advocacy/motivating-programmer-to-fix",
+      "qa/bug-advocacy/defending-corner-case-and-unimportant-bugs",
+      "qa/bug-advocacy/oracle-consistency-heuristics-for-disputes",
+      "qa/bug-advocacy/irreproducible-bug-reporting-practice",
+      "qa/bug-advocacy/hidden-critical-conditions-checklist",
+      "qa/bug-advocacy/credibility-building-and-destroying-behaviors"
+    ],
+    "domain": "qa"
+  },
+  {
+    "key": "qa-exploratory",
+    "name": "探索式測試",
+    "desc": "邊測邊設計下一步、不是亂點，是同時學習/設計/執行/詮釋四個認知活動",
+    "order": [
+      "qa/exploratory/exploratory-testing-four-activities",
+      "qa/exploratory/exploratory-testing-common-misconceptions",
+      "qa/exploratory/exploratory-testing-scope-and-method-misconceptions",
+      "qa/exploratory/scripted-vs-exploratory-when-to-use",
+      "qa/exploratory/scripted-testing-temporal-staleness-limitation",
+      "qa/exploratory/exploratory-testing-coverage-and-session-tracking",
+      "qa/exploratory/session-based-test-management-modes-and-coverage-illusion",
+      "qa/exploratory/exploratory-tester-core-skills",
+      "qa/exploratory/exploratory-tester-idea-generation-and-resource-skills",
+      "qa/exploratory/oracle-heuristics-consistency-checks",
+      "qa/exploratory/test-idea-to-test-design-challenge",
+      "qa/exploratory/story-evolving-into-test-hypothesis-design",
+      "qa/exploratory/risk-based-regression-heuristics-rcrcrc-failure",
+      "qa/exploratory/single-function-check-breadth-heuristic-failure",
+      "qa/exploratory/exploratory-heuristics-boundaries-crud-count-selection",
+      "qa/exploratory/exploratory-heuristics-state-sequence-dependency-mapmaking",
+      "qa/exploratory/exploratory-heuristics-variable-touchpoint-data-scenario",
+      "qa/exploratory/data-type-attacks-strings-numbers",
+      "qa/exploratory/data-type-attacks-datetime-paths",
+      "qa/exploratory/api-test-mnemonics-binmen-poised-vader",
+      "qa/exploratory/web-testing-navigation-input-a11y-heuristics",
+      "qa/exploratory/web-accessibility-testing-heuristics"
+    ],
+    "domain": "qa"
+  }
+]

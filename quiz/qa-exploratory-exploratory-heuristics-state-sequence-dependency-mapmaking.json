@@ -1,0 +1,43 @@
+{
+  "node": "qa/exploratory/exploratory-heuristics-state-sequence-dependency-mapmaking",
+  "questions": [
+    {
+      "type": "choice",
+      "q": "State Analysis（狀態分析）啟發法建議搭配哪兩個啟發法一起使用才算完整？",
+      "options": [
+        "Sequences 與 Interruptions",
+        "Count 與 Selection",
+        "Boundaries 與 Goldilocks",
+        "Configurations 與 Starvation"
+      ],
+      "answer": 0
+    },
+    {
+      "type": "choice",
+      "q": "Dependencies（依賴關係）啟發法中「一個客戶擁有多張發票」這種關係，建議搭配哪些啟發法展開具體測試點？",
+      "options": [
+        "只需要測發票本身的欄位格式即可",
+        "套用 CRUD、Count、Position、Selection，例如刪除最後一筆明細後讀取、更新第一筆明細、刪除擁有 0/1/多張發票的客戶",
+        "只需要測客戶資料的隱私加密",
+        "只需要測發票的列印排版"
+      ],
+      "answer": 1
+    },
+    {
+      "type": "choice",
+      "q": "常見誤解：狀態機測試只要把 UI 上能點到的按鈕流程都走過一遍，就算涵蓋完整。這個判斷漏了什麼？",
+      "options": [
+        "應該額外測試「跳過中間狀態直接呼叫下一步 API」這種 UI 上沒有按鈕、但後端沒擋下的非法轉移路徑，因為使用者可能繞過 UI 直接呼叫 API",
+        "判斷正確，UI 按鈕流程走完就代表狀態機測試完整",
+        "狀態機測試只適用於後台系統，前台不需要",
+        "只要測過一次正常順序，其他順序組合可以視為等價不用再測"
+      ],
+      "answer": 0
+    },
+    {
+      "type": "scenario",
+      "q": "測試「出金審核」單據從建立到撥款的完整流程時，如何套用 State Analysis、Sequences、Dependencies、Map Making 四個啟發法設計 TC？",
+      "answer": "1) State Analysis：先畫出待審核、審核中、已核准、已撥款、已駁回等狀態與轉移，針對每個合法轉移各建一條 TC，並額外測試直接呼叫非法轉移 API（如從待審核直接跳撥款）是否被擋下；2) Sequences：測試反向操作與復原／重做，例如核准後嘗試退回、同時送出多筆審核請求觀察系統是否正確排序處理；3) Dependencies：出金單與會員帳戶餘額、稽核紀錄存在依賴關係，測試刪除或駁回單據後，餘額是否正確回補、稽核紀錄是否仍可查詢而非被一併清除；4) Map Making：從「待審核」這個基準狀態出發，每次只操作一步（核准／駁回／退回）再回到基準狀態，逐步繪製完整狀態地圖，確認沒有遺漏任何轉移路徑。"
+    }
+  ]
+}

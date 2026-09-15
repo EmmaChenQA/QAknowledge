@@ -1,0 +1,43 @@
+{
+  "node": "rd/backend/idempotency",
+  "questions": [
+    {
+      "type": "choice",
+      "q": "哪個 HTTP 方法預設不具冪等性？",
+      "options": [
+        "GET",
+        "PUT",
+        "DELETE",
+        "POST"
+      ],
+      "answer": 3
+    },
+    {
+      "type": "choice",
+      "q": "同 idempotency key 併發兩支請求，最常見的缺陷是？",
+      "options": [
+        "回 500",
+        "兩筆都入帳",
+        "回 404",
+        "key 被拒絕"
+      ],
+      "answer": 1
+    },
+    {
+      "type": "choice",
+      "q": "驗冪等時判 Pass 的依據應是？",
+      "options": [
+        "兩次都回 200",
+        "回讀後資料只變一次",
+        "回應時間相同",
+        "log 無錯"
+      ],
+      "answer": 1
+    },
+    {
+      "type": "scenario",
+      "q": "出金 API 帶 idempotency key。RD 說「重送會回同一張單」。請列出你會設計的 3 條 TC 與判定依據。",
+      "answer": "1) 同 key 順序重送兩次→回讀單據只有一筆、餘額只扣一次。2) 同 key 併發兩支同時送→同上，且兩者回應單號相同。3) 第一次回 4xx 錯誤後同 key 重送正確參數→應能成功建單，錯誤不可被快取。判定一律看回讀值不看 2xx。"
+    }
+  ]
+}

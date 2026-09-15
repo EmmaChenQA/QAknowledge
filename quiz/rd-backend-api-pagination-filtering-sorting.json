@@ -1,0 +1,43 @@
+{
+  "node": "rd/backend/api-pagination-filtering-sorting",
+  "questions": [
+    {
+      "type": "choice",
+      "q": "依規範，篩選商品分類與是否下架的正確端點寫法是？",
+      "options": [
+        "GET /products/discontinued?category=books",
+        "POST /products/filter",
+        "GET /products?category=books&discontinued=false",
+        "GET /categories/books/products/discontinued/false"
+      ],
+      "answer": 2
+    },
+    {
+      "type": "choice",
+      "q": "page_size 未設上限最直接的風險是？",
+      "options": [
+        "排序失效",
+        "客戶端可一次撈全表造成效能/資安風險",
+        "版本號衝突",
+        "狀態碼變成500"
+      ],
+      "answer": 1
+    },
+    {
+      "type": "choice",
+      "q": "分頁 API 回傳的 total_count 若以「過濾前」全集合計算，會造成什麼現象？",
+      "options": [
+        "前端算出的總頁數與實際可翻頁數不符",
+        "排序方向錯誤",
+        "回傳格式變成純文字",
+        "版本號自動升級"
+      ],
+      "answer": 0
+    },
+    {
+      "type": "scenario",
+      "q": "測試一支列表 API 同時支援 search、category、sort、page 參數。如何設計一組具代表性的 TC 組合？",
+      "answer": "1) 單一參數邊界：page=0、page超出總頁數、page_size極大值/負值；2) 參數組合：search+category同時帶、category帶不存在的值；3) 排序欄位不存在或拼錯時的降級行為；4) 過濾與分頁共同作用時，確認total_count與實際頁數是以過濾後結果計算；5) 確認AND/OR語意（多category是否為聯集或交集）並記錄依據來源。"
+    }
+  ]
+}

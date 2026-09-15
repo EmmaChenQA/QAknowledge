@@ -1,0 +1,43 @@
+{
+  "node": "qa/exploratory/exploratory-heuristics-variable-touchpoint-data-scenario",
+  "questions": [
+    {
+      "type": "choice",
+      "q": "Follow the Data（跟著資料走）啟發法的作法是？",
+      "options": [
+        "只驗證資料最終呈現在報表上的結果",
+        "執行一連串涉及同一筆資料的操作（輸入→搜尋→產出報表→匯出→匯入→更新→檢視），在每一步都驗證資料完整性",
+        "只驗證資料庫欄位的型別定義",
+        "只需要測試資料匯出功能本身"
+      ],
+      "answer": 1
+    },
+    {
+      "type": "choice",
+      "q": "Constraints（限制）啟發法建議刻意做什麼來設計測試？",
+      "options": [
+        "只測試合法且常見的輸入組合",
+        "只測試 UI 上有提供的操作方式",
+        "刻意違反限制條件：必填欄位留空、依賴欄位填入不相容組合、輸入重複 ID，並搭配不同輸入方式（打字、匯入、GUI、API）一起測",
+        "只測試效能負載上限"
+      ],
+      "answer": 2
+    },
+    {
+      "type": "choice",
+      "q": "Variable Analysis（變數分析）與 TouchPoints（接觸點）這兩個啟發法的關係是？",
+      "options": [
+        "兩者是同一件事，找到變數就等於找到接觸點",
+        "Variable Analysis 找出系統裡任何會改變的值（含隱晦與看不見的），TouchPoints 則找出可以觀察或控制系統的公開或私有介面，作為驗證這些變數的施力點",
+        "Variable Analysis 只適用於後端，TouchPoints 只適用於前端",
+        "兩者都只處理使用者可見的輸入欄位"
+      ],
+      "answer": 1
+    },
+    {
+      "type": "scenario",
+      "q": "測試「批次匯入優惠券並套用到訂單」這個功能時，如何套用 Follow the Data、Constraints、Users & Scenarios 三個啟發法設計 TC？",
+      "answer": "1) Follow the Data：跑一次完整鏈路（匯入優惠券檔案→建立訂單→套用優惠券→結算報表），在每個節點核對優惠券張數與折抵金額是否一致，而非只驗證匯入成功；2) Constraints：刻意違反限制條件測試，例如匯入檔案缺少必填欄位、優惠券 ID 重複、面額與可折抵上限不相容組合，並比對用「匯入檔案」與「API 直接呼叫」兩種輸入方式的驗證邏輯是否一致；3) Users & Scenarios：模擬沒耐心的使用者情境，連續快速點擊套用按鈕或在匯入未完成時就切換頁面操作，觀察系統是否仍維持資料一致與正確的錯誤提示。"
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "node": "qa/exploratory/api-test-mnemonics-binmen-poised-vader",
+  "questions": [
+    {
+      "type": "choice",
+      "q": "VADER 口訣中的「A」（Authorisation/Authentication）具體要測什麼？",
+      "options": [
+        "只需要確認登入功能本身可以成功取得 token",
+        "只需要確認 API 文件裡有寫授權方式即可，不用實際測試",
+        "包含越權測試，例如用甲使用者的 token 呼叫乙使用者資源的端點，確認是否會拿到不該拿到的資料",
+        "只適用於後台系統，前台會員端 API 不需要測授權"
+      ],
+      "answer": 2
+    },
+    {
+      "type": "choice",
+      "q": "POISED 口訣裡的 Interop 面向，主要在檢查什麼？",
+      "options": [
+        "API 回應時間是否夠快",
+        "使用者介面的按鈕互動邏輯",
+        "該 API 與上下游系統或第三方服務之間的互通性是否正常",
+        "API 文件排版是否易讀"
+      ],
+      "answer": 2
+    },
+    {
+      "type": "choice",
+      "q": "常見誤解：一支 API 端點已經對所有正常輸入回 200 且欄位格式正確，就可以判定該端點通過 BINMEN 檢查。這個判斷漏了什麼？",
+      "options": [
+        "漏了 Invalid Entries、NULL、Method、Empty、Negative 等異常輸入與非預期方法的驗證，只測正常輸入無法涵蓋 BINMEN 六個面向",
+        "判斷正確，200 且格式對就已足夠",
+        "BINMEN 只適用於 GraphQL API，REST API 不適用",
+        "只要有寫自動化測試就等同通過 BINMEN 檢查，不需要人工再確認"
+      ],
+      "answer": 0
+    },
+    {
+      "type": "scenario",
+      "q": "要幫一支新的「查詢會員出金紀錄」GET API 規劃測試案例，如何用 BINMEN/POISED/VADER 三組口訣快速產生涵蓋面完整的 TC 清單？",
+      "answer": "1) 用 POISED 先列六大面向：Parameters（分頁、篩選、必填/選填參數組合）、Output（回應欄位是否符合契約）、Interop（若涉及第三方支付紀錄同步是否一致）、Security（是否僅回傳呼叫者本人資料）、Errors（無資料、查詢區間無效等情境的錯誤格式）、Data（金額與狀態欄位是否正確）；2) 用 BINMEN 展開 Parameters 細節，測邊界頁碼、無效查詢區間、NULL 篩選條件、對本端點送 POST/DELETE 等錯誤方法、空結果集、負數頁碼；3) 用 VADER 補 Authorisation 測試，換另一個會員 ID 查詢確認被擋下，並確認 GET 本身不會有寫入副作用（Verbs）。"
+    }
+  ]
+}

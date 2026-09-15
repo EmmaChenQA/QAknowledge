@@ -1,0 +1,43 @@
+{
+  "node": "rd/backend/api-http-methods",
+  "questions": [
+    {
+      "type": "choice",
+      "q": "以下哪個端點設計違反了「宾语必須是名詞」與方法冪等的原則？",
+      "options": [
+        "GET /logout（會登出使用者）",
+        "POST /orders",
+        "GET /orders/2",
+        "DELETE /orders/2"
+      ],
+      "answer": 0
+    },
+    {
+      "type": "choice",
+      "q": "客戶端只能發 GET/POST，要模擬 PUT 該怎麼做？",
+      "options": [
+        "直接改用 GET 帶參數",
+        "POST 並加 X-HTTP-Method-Override: PUT",
+        "改用 PATCH",
+        "在 body 加 method:PUT 欄位即可，不需 header"
+      ],
+      "answer": 1
+    },
+    {
+      "type": "choice",
+      "q": "下列何者不需要保證冪等？",
+      "options": [
+        "POST（建立資源）",
+        "PUT",
+        "DELETE",
+        "GET"
+      ],
+      "answer": 0
+    },
+    {
+      "type": "scenario",
+      "q": "QA 測到一支 PUT /accounts/1 端點，連續打兩次相同 payload，結果帳戶餘額欄位被疊加而非覆蓋。如何設計 TC 判定與描述缺陷？",
+      "answer": "1) 先單次打一次記錄回讀值作基準；2) 連續打兩次相同 payload 後 GET 回讀，比對第二次結果是否等於第一次（冪等）；3) 若不等，記錄為「PUT 未保證冪等，重送導致副作用疊加」，附兩次回讀值差異；4) 檢查是否為網路重試情境下會實際觸發（如前端斷線自動重送 PUT）。"
+    }
+  ]
+}
