@@ -1,6 +1,6 @@
 ---
 id: rd/backend/rails/http-verb-same-path-different-action
-title: 同路徑不同 HTTP 方法對應不同 action 的測試盲點
+title: 同路徑換方法對應不同動作的測試盲點（HTTP verb／action）
 aliases: [同一 URL 多動詞, "via: :all 風險", match via, HTTP 動詞路由比對, CSRF 繞過, verb-based routing, 換動詞測試]
 tags: [rails, routing, http, security, test-design]
 topic: rails

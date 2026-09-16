@@ -4,6 +4,8 @@ const http = require('http'), fs = require('fs'), path = require('path');
 const { execFileSync } = require('child_process');
 const ROOT = path.resolve(__dirname, '..'), PORT = process.env.PORT || 4173;
 const PROGRESS = process.env.QK_PROGRESS ? path.resolve(process.env.QK_PROGRESS) : path.join(ROOT, 'progress.json');
+const BACKUP_DIR = process.env.QK_BACKUP_DIR ? path.resolve(process.env.QK_BACKUP_DIR) : path.join(ROOT, '..', 'qa-knowledge-backups');
+const BACKUP_KEEP_DAYS = 30;
 
 const safe = (base, ...seg) => {
   const p = path.resolve(ROOT, base, ...seg);
@@ -14,6 +16,23 @@ const arr = v => '[' + (Array.isArray(v) ? v : String(v || '').split(',')).map(s
 const oneLine = v => String(v || '').replace(/[\r\n]+/g, ' ').trim();
 const slug = s => oneLine(s).replace(/[^\w一-鿿-]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 40) || 'note';
 const today = () => new Date().toISOString().slice(0, 10);
+
+// 每日首次寫入前，把「今天寫入之前」的狀態存一份快照；同一天不重複備份；只留最近 BACKUP_KEEP_DAYS 天
+function backupProgressOnce() {
+  try {
+    if (!fs.existsSync(PROGRESS)) return; // 沒有舊檔可備份（例如第一次啟動）
+    const stamp = today();
+    const target = path.join(BACKUP_DIR, `progress-${stamp}.json`);
+    if (fs.existsSync(target)) return; // 今天已備份過
+    fs.mkdirSync(BACKUP_DIR, { recursive: true });
+    fs.copyFileSync(PROGRESS, target);
+    const cutoff = Date.now() - BACKUP_KEEP_DAYS * 864e5;
+    for (const f of fs.readdirSync(BACKUP_DIR)) {
+      const m = f.match(/^progress-(\d{4}-\d{2}-\d{2})\.json$/);
+      if (m && new Date(m[1] + 'T00:00:00Z').getTime() < cutoff) fs.unlinkSync(path.join(BACKUP_DIR, f));
+    }
+  } catch (e) { console.error('backup 失敗（不影響寫入）:', e.message); }
+}
 const rebuild = () => execFileSync(process.execPath, [path.join(__dirname, 'build.js')], { encoding: 'utf8' }).trim();
 
 const handlers = {
@@ -77,7 +96,7 @@ http.createServer((req, res) => {
     req.on('end', () => {
       try {
         const b = JSON.parse(body || '{}');
-        if (url === '/progress') { fs.writeFileSync(PROGRESS, body); return res.writeHead(204).end(); }
+        if (url === '/progress') { backupProgressOnce(); fs.writeFileSync(PROGRESS, body); return res.writeHead(204).end(); }
         const h = handlers[url];
         if (!h) return res.writeHead(404).end();
         h(b);
@@ -98,4 +117,4 @@ http.createServer((req, res) => {
   if (!fs.existsSync(f)) return res.writeHead(404).end();
   res.setHeader('Content-Type', (f.endsWith('.js') ? 'application/javascript' : f.endsWith('.css') ? 'text/css' : 'text/html') + '; charset=utf-8');
   res.end(fs.readFileSync(f));
-}).listen(PORT, () => console.log('http://localhost:' + PORT));
+}).listen(PORT, () => { backupProgressOnce(); console.log('http://localhost:' + PORT); });

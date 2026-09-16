@@ -1,6 +1,6 @@
 ---
 id: qa/exploratory/risk-based-regression-heuristics-rcrcrc-failure
-title: 風險導向回歸測試範圍優先順序啟發法 RCRCRC
+title: 風險導向回歸測試範圍優先順序（RCRCRC）
 aliases: [RCRCRC, regression testing scope, 回歸測試範圍, risk-based regression, Karen Johnson RCRCRC, 回歸測試優先順序]
 tags: [regression-testing, risk-based-testing, test-heuristic]
 topic: qa-exploratory

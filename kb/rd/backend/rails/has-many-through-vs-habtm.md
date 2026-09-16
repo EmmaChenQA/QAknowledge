@@ -1,6 +1,6 @@
 ---
 id: rd/backend/rails/has-many-through-vs-habtm
-title: 多對多關聯：has_many :through vs has_and_belongs_to_many
+title: 多對多關聯的兩種寫法（has_many :through vs habtm）
 aliases: [habtm, join table, 中介表, join model, 多對多關聯, 聯合表格]
 tags: [rails, associations, data-integrity]
 topic: rails

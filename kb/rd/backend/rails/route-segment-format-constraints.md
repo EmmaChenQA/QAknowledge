@@ -1,6 +1,6 @@
 ---
 id: rd/backend/rails/route-segment-format-constraints
-title: 路由 constraints 與 format 隱性參數造成的邊界案例
+title: 路由隱性參數造成的邊界案例（constraints／format）
 aliases: [segment constraints, id 正則約束, format 隱性參數, 路由正則不可加錨點, request-based constraints, subdomain constraint, 路由邊界測試]
 tags: [rails, routing, boundary-value, test-design]
 topic: rails

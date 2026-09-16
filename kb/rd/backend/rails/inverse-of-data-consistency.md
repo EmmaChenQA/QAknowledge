@@ -1,6 +1,6 @@
 ---
 id: rd/backend/rails/inverse-of-data-consistency
-title: 雙向關聯缺 inverse_of 的資料不一致
+title: 雙向關聯缺失造成的資料不一致（inverse_of）
 aliases: [inverse_of, bi-directional association, 雙向關聯, autosave 失效, 記憶體多份副本, 巢狀建立存檔失敗]
 tags: [rails, associations, data-integrity]
 topic: rails

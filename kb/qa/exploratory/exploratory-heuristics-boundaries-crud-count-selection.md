@@ -1,6 +1,6 @@
 ---
 id: qa/exploratory/exploratory-heuristics-boundaries-crud-count-selection
-title: 探索式測試核心啟發法：邊界、CRUD、計數與選取
+title: 探索式測試核心啟發法（邊界／CRUD／計數／選取）
 aliases: [Boundaries heuristic, Goldilocks heuristic, CRUD testing, Count heuristic, Selection heuristic, 0/1/many 模板, exploratory testing heuristics, 探索式測試啟發法]
 tags: [exploratory-testing, boundary-value, test-heuristic]
 topic: qa-exploratory

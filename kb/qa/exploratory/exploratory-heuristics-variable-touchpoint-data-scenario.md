@@ -1,6 +1,6 @@
 ---
 id: qa/exploratory/exploratory-heuristics-variable-touchpoint-data-scenario
-title: 探索式測試啟發法：變數、接觸點、資料追蹤與情境模擬
+title: 探索式測試啟發法（變數／接觸點／資料／情境）
 aliases: [Variable Analysis, TouchPoints, Follow the Data, Constraints heuristic, Sorting heuristic, Users & Scenarios, 資料追蹤測試, 違反限制條件測試]
 tags: [exploratory-testing, test-heuristic, data-flow, scenario-testing]
 topic: qa-exploratory

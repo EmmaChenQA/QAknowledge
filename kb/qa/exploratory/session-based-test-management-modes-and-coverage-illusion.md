@@ -1,6 +1,6 @@
 ---
 id: qa/exploratory/session-based-test-management-modes-and-coverage-illusion
-title: Session-Based Test Management 的管理模式與覆蓋錯覺
+title: 管理模式與覆蓋錯覺（Session-Based Test Management）
 aliases: [session 筆記, 探索式測試管理, delegation 委派模式, participation 參與模式, 覆蓋錯覺, coverage illusion, 探索式測試重複測試漏測]
 tags: [exploratory-testing, test-management, session-based-testing, coverage]
 topic: qa-exploratory

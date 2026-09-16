@@ -1,6 +1,6 @@
 ---
 id: qa/exploratory/exploratory-testing-coverage-and-session-tracking
-title: 探索式測試怎麼算「測夠了」：章程與 session 追蹤
+title: 探索式測試怎麼算「測夠了」（章程與 session 追蹤）
 aliases: [session-based test management, SBTM, 測試章程, charter, 探索式測試覆蓋率, test coverage outline, 探索式測試怎麼知道測完]
 tags: [exploratory-testing, coverage, test-management, session-based-testing]
 topic: qa-exploratory

@@ -1,6 +1,6 @@
 ---
 id: qa/exploratory/oracle-heuristics-consistency-checks
-title: Oracle 啟發式：沒有唯一正確答案時怎麼判斷 pass/fail
+title: 沒有唯一正確答案時怎麼判斷對錯（Oracle 啟發式／pass-fail）
 aliases: [oracle, 測試 oracle, oracle heuristics, pass fail 判斷, 測試判準, consistency heuristics, 一致性啟發式, 預期結果怎麼定, oracle problem]
 tags: [oracle, interpretation, test-design, heuristics]
 topic: qa-exploratory

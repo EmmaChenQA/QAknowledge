@@ -1,6 +1,6 @@
 ---
 id: qa/bug-advocacy/oracle-consistency-heuristics-for-disputes
-title: 用一致性 Oracle 化解「這是設計不是缺陷」之爭
+title: 化解「這是設計不是缺陷」之爭（一致性 Oracle）
 aliases: [consistency oracle, 一致性測試oracle, specification oracle, 這是功能不是bug, as designed 爭議, oracle heuristics, 判斷缺陷依據]
 tags: [bug-advocacy, oracle, triage, dispute-resolution]
 topic: qa-bug-advocacy

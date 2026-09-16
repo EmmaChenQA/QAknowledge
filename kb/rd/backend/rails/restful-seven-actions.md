@@ -20,3 +20,12 @@ summary: resources 產生七個標準路由，是該資源端點測試的基本�
 ## QA 視角
 - 怎麼測：先核對 routes.rb（或 `rails routes -c <controller>`）列出實際開放哪幾個動作，不要預設七個都在；刻意打未開放的動作（如 only 只留 index/show 卻打 DELETE），確認是路由層 404 而非業務碼。
 - 常見缺陷：資源其實是 `resource`（單數）沒有 index，卻被當分頁列表去測致 404；only/except 漏配置使本該關閉的 destroy 仍可呼叫；new/edit 這兩個表單 GET 端點常被忽略，未納入測試清單。
+
+## 我的筆記
+resource / resources 是開發用來定義「API 怎麼走」的方式
+
+Rails 的命名規則是：
+- resource  # 單一資源
+- resources # 資源集合
+
+QA 主要測試的是「頁面功能有沒有正常」，不是一定要確認它用了哪個（除非是需求有更動到這塊）

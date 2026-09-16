@@ -1,6 +1,6 @@
 ---
 id: qa/exploratory/api-test-mnemonics-binmen-poised-vader
-title: API 測試記憶口訣 BINMEN／POISED／VADER
+title: API 測試記憶口訣三組（BINMEN／POISED／VADER）
 aliases: [API testing checklist, BINMEN, POISED, VADER, API 測試框架, API 測試涵蓋面, api testing mnemonics, API 驗收清單]
 tags: [api-testing, test-design, checklist, mnemonic]
 topic: qa-exploratory

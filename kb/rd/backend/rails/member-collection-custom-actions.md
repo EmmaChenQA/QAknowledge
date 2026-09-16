@@ -1,6 +1,6 @@
 ---
 id: rd/backend/rails/member-collection-custom-actions
-title: member／collection 自訂路由：七動作之外的額外端點
+title: 自訂路由：七動作之外的額外端點（member／collection）
 aliases: [member do, collection do, "on: member", "on: collection", 自訂資源動作, 額外端點測試, 非標準 CRUD 動作]
 tags: [rails, routing, attack-surface, test-design]
 topic: rails

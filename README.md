@@ -6,6 +6,8 @@
 - 建站：`node scripts/build.js`（產 `kb/INDEX.md` + `site/index.html`）
 - 閱讀＋答題：`node scripts/serve.js` → http://localhost:4173（答題自動寫回 `progress.json`）
 - 測試／除錯時**不要碰正式紀錄**：`PORT=4174 QK_PROGRESS=/tmp/qk-test-progress.json node scripts/serve.js`，讀寫都走指定的另一份檔案（2026-09-15 事故後新增：AI 驗證一律走此模式，禁止對 `progress.json` 執行刪除）
+- **改完 app.js／build.js／style.css 後、commit 前先跑迴歸測試**：`node scripts/smoketest.js`（或 `npm test`）。全程用隔離的 port 與暫存 progress.json，跑完自動清除，不會碰真實紀錄。涵蓋靜態掃描（防 href="#" 撞路由這類結構性錯誤）與動態流程（每個路由能開、表單欄位該連動的有連動、答題／重練/匯入匯出行為正確）。新功能有這類「兩個元件該同步卻各自預設」的風險時，順手加一條進去，不要只靠手動點一次。
+- **每日自動備份**：`serve.js` 啟動時、以及每天第一次寫入 `/progress` 前，會把當下內容存一份到 repo 外的 `../qa-knowledge-backups/progress-YYYY-MM-DD.json`（同一天只存一次，存的是「當天變動前」的狀態），只保留最近 30 天，超過自動刪除。測試時可用 `QK_BACKUP_DIR` 另指路徑，避免污染真實備份。
 - 直接開 `site/index.html` 也可，但答題只存瀏覽器 localStorage，需手動「匯出」覆蓋 `progress.json`
 
 ## 主題

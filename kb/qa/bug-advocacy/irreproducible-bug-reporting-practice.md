@@ -1,6 +1,6 @@
 ---
 id: qa/bug-advocacy/irreproducible-bug-reporting-practice
-title: 無法重現的缺陷：回報紀律與 Dumpster 管理
+title: 無法重現的缺陷回報紀律（Dumpster 管理）
 aliases: [irreproducible bug, 無法重現, non-reproducible failure, cannot reproduce, dumpster diving, 間歇性缺陷, 偶發性bug回報]
 tags: [bug-advocacy, reproducibility, triage, bug-tracking]
 topic: qa-bug-advocacy

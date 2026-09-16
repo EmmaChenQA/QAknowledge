@@ -111,7 +111,7 @@ fs.writeFileSync(path.join(ROOT, 'kb', 'INDEX.md'),
   '<!-- 由 scripts/build.js 產生，勿手改 -->\n# INDEX\n\nAI 開工先讀本檔，比對 aliases 挑節點，再讀命中的原檔。\n\n## 知識節點\n\n'
   + '| id | title | topic | aliases | confidence | source_lang | updated | summary |\n|---|---|---|---|---|---|---|---|\n'
   + nodes.map(n => `| ${n.id} | ${n.title} | ${n.topic} | ${n.aliases.join('、')} | ${n.confidence}${n.myNote ? ' +筆記' : ''} | ${n.source_lang} | ${n.updated} | ${n.summary} |`).join('\n')
-  + '\n\n## 經歷筆記（綁定特定情境，只當參考）\n\n'
+  + '\n\n## 實務筆記（綁定特定情境，只當參考）\n\n'
   + '| date | title | context | nodes | summary |\n|---|---|---|---|---|\n'
   + (notes.length ? notes.map(n => `| ${n.date} | ${n.title} | ${n.context} | ${n.nodes.join('、')} | ${n.summary} |`).join('\n') : '| — | 尚無筆記 | | | |')
   + '\n');
@@ -127,9 +127,9 @@ const html = `<!doctype html>
 <style>${css}</style></head><body>
 <header class="top"><div class="brand" data-act="home"><div class="logo"><svg viewBox="0 0 24 24"><path d="M9 4h7L11 12l5 8H9l-5-8 5-8z" fill="#fff" opacity=".55"/><path d="M15 4h7l-5 8 5 8h-7l-5-8 5-8z" fill="#fff"/></svg></div><span class="wm">QA Knowledge</span></div>
 <div class="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="s" placeholder="搜尋標題、別名、內文、筆記…"><kbd>⌘K</kbd><div class="ac" id="ac" hidden></div></div>
-<nav class="topnav"><a data-act="home">首頁</a><a data-act="notes">筆記</a><a data-act="quiz">知識檢測</a><a data-act="weak">弱點</a></nav>
+<nav class="topnav"><a data-act="home">首頁</a><a data-act="quiz">知識檢測</a><a data-act="weak">弱點分析</a><a data-act="notes">實務筆記</a><a data-act="index">索引</a></nav>
 </header>
-<div class="layout"><aside id="side"></aside><main id="m"></main></div>
+<div class="layout"><aside id="side"></aside><div class="resizer" id="resizer"></div><main id="m"></main><button id="toTop" title="回到頂端"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button></div>
 <script>window.DATA=${data}</script>
 <script>${app}</script>
 </body></html>`;

@@ -1,0 +1,13 @@
+{
+  "name": "qa-knowledge",
+  "private": true,
+  "description": "本地 QA/RD 知識庫。scripts/build.js 建站，scripts/serve.js 本地 server，scripts/smoketest.js 迴歸測試。",
+  "scripts": {
+    "build": "node scripts/build.js",
+    "serve": "node scripts/serve.js",
+    "test": "node scripts/smoketest.js"
+  },
+  "devDependencies": {
+    "playwright": "1.59.1"
+  }
+}

@@ -1,6 +1,6 @@
 ---
 id: rd/backend/rails/controller-functional-test
-title: Controller / Functional Test（控制器功能測試）
+title: 控制器功能測試（Controller / Functional Test）
 aliases: [functional test, controller test, 控制器測試, API response 測試, action 測試]
 tags: [rails, 測試分層, controller]
 topic: rails

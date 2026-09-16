@@ -1,6 +1,6 @@
 ---
 id: rd/backend/rails/uniqueness-validator-not-db-constraint
-title: uniqueness 驗證不等於資料庫唯一約束（Uniqueness Validation Race Condition）
+title: 驗證不等於資料庫唯一約束（uniqueness／Race Condition）
 aliases: [uniqueness validator, 唯一性驗證, has already been taken, 重複帳號競態, scope 唯一性, 唯一索引]
 tags: [rails, validation, race-condition, uniqueness]
 topic: rails

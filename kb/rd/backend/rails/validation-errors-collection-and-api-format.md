@@ -1,6 +1,6 @@
 ---
 id: rd/backend/rails/validation-errors-collection-and-api-format
-title: errors collection 結構與 API 錯誤格式（Validation Errors Object）
+title: 驗證錯誤集合的結構與 API 格式（errors collection）
 aliases: [errors.full_messages, errors.where, error type, error details, 多筆驗證錯誤, full_message, errors[:base]]
 tags: [rails, validation, api, error-handling]
 topic: rails
