@@ -3,3 +3,4 @@ progress.json
 node_modules/
 dist/
 .DS_Store
+desktop/build-info.json

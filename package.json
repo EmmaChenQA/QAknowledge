@@ -10,7 +10,7 @@
     "serve": "node scripts/serve.js",
     "test": "node scripts/smoketest.js",
     "desktop": "electron .",
-    "desktop:build": "electron-builder"
+    "desktop:build": "node desktop/stamp.js && electron-builder"
   },
   "build": {
     "appId": "tw.jvd.qa-knowledge",
@@ -19,6 +19,7 @@
     "files": [
       "desktop/**/*",
       "!desktop/gen-icons.js",
+      "!desktop/stamp.js",
       "package.json"
     ],
     "mac": { "target": "dir", "category": "public.app-category.productivity", "identity": null },

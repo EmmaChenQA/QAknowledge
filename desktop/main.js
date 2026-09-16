@@ -30,6 +30,9 @@ if (ROOT && app.isPackaged) {
 const PORT = Number(process.env.QK_PORT) || 4173;
 const URL = 'http://localhost:' + PORT;
 
+let BUILD = null;
+try { BUILD = require('./build-info.json'); } catch {}
+
 let tray = null, child = null, state = 'stopped', detail = '', stderr = [];
 
 const ICON = s => nativeImage.createFromPath(
@@ -63,7 +66,12 @@ function render() {
     items.push({ label: '重試', click: start });
     items.push({ label: '檢視錯誤訊息', click: showError });
   }
-  items.push({ type: 'separator' }, { label: '結束', click: () => app.quit() });
+  items.push({ type: 'separator' });
+  items.push({
+    label: 'v' + app.getVersion() + (BUILD ? ' · ' + BUILD.commit + ' · ' + BUILD.builtAt : ' · 開發模式'),
+    enabled: false,
+  });
+  items.push({ label: '結束', click: () => app.quit() });
   tray.setContextMenu(Menu.buildFromTemplate(items));
 }
 
