@@ -68,7 +68,7 @@ v1.0.0 · d4d9756+ · 09-16 16:14
 ```
 npm run desktop:build
 ```
-產出 `dist/mac-arm64/QA Knowledge.app`（約 288 MB）。
+不帶參數會編譯目前所在平台。產出 `dist/mac-arm64/QA Knowledge.app`（約 288 MB）。
 
 ### 使用
 1. 雙擊 `QA Knowledge.app`
@@ -87,9 +87,11 @@ app 不會出現在 Dock 與 Cmd+Tab（`app.dock.hide()`，選單列常駐工具
 ### 建置
 在 macOS 上即可跨平台編譯，**不需要 wine**：
 ```
-npx electron-builder --win --x64
+npm run desktop:build -- --win --x64
 ```
-產出 `dist/win-unpacked/`（約 373 MB），執行檔是 `QA Knowledge.exe`。
+`--` 之後的參數會傳給 electron-builder。產出 `dist/win-unpacked/`（約 373 MB），執行檔是 `QA Knowledge.exe`。
+
+不要寫成 `npx electron-builder --win --x64` — 那會跳過 `stamp.js`，打出來的包版本資訊會停留在上一次。
 
 ### 使用
 1. 把**整個 repo 資料夾**（含 `dist/win-unpacked/`）複製到 Windows
